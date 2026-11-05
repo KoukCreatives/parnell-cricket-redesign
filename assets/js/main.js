@@ -21,45 +21,48 @@
       </div>`;
   }
 
-  /* ---------- Events: past ones hide themselves ---------- */
-  const evWrap = $("[data-events]");
-  if (evWrap && S.events) {
+  /* ---------- Events: Upcoming / Recent tabs; old events disappear ---------- */
+  const evUp = $("[data-events-upcoming]");
+  const evPast = $("[data-events-recent]");
+  if ((evUp || evPast) && S.events) {
     const today = todayNZ();
-    const upcoming = S.events.map(e => {
+    const recentFrom = iso(new Date(toDate(today) - (S.recentDays || 45) * 864e5));
+    const all = S.events.map(e => {
       if (e.repeatWeekly) {
-        // Next occurrence on or after today, within the series.
         let d = toDate(e.date);
         const t = toDate(today);
         while (d < t) d.setUTCDate(d.getUTCDate() + 7);
         const next = iso(d);
-        return next <= e.end ? { ...e, show: next, last: next } : null;
+        return next <= e.end ? { ...e, show: next, last: next } : { ...e, show: e.end, last: e.end };
       }
       return { ...e, show: e.date, last: e.end || e.date };
-    }).filter(e => e && e.last >= today)
-      .sort((a, b) => a.show.localeCompare(b.show))
-      .slice(0, Number(evWrap.dataset.limit || 3));
+    });
+    const upcoming = all.filter(e => e.last >= today).sort((a, b) => a.show.localeCompare(b.show));
+    const recent = all.filter(e => e.last < today && e.last >= recentFrom).sort((a, b) => b.show.localeCompare(a.show));
 
-    if (!upcoming.length) {
-      evWrap.closest("section")?.setAttribute("hidden", "");
-    } else {
-      evWrap.innerHTML = upcoming.map(e => `
-        <article class="event">
-          <div class="event__date" aria-hidden="true">
-            <span>${fmt(e.show, { weekday: "short" })}</span>
-            <strong>${fmt(e.show, { day: "numeric" })}</strong>
-            <span>${fmt(e.show, { month: "short" })}</span>
-          </div>
-          <div class="event__body">
-            <h3>${esc(e.title)}</h3>
-            <p class="event__meta">
-              <time datetime="${e.show}">${fmt(e.show, { weekday: "long", day: "numeric", month: "long" })}</time>
-              ${e.repeatWeekly ? " · Every week" : ""}${e.time ? " · " + esc(e.time) : ""}${e.place ? " · " + esc(e.place) : ""}
-            </p>
-            <p>${esc(e.summary)}</p>
-          </div>
-          <a class="btn btn--ghost" href="${esc(e.href)}">Details<span class="sr-only"> about ${esc(e.title)}</span></a>
-        </article>`).join("");
-    }
+    const card = (e, past) => `
+      <article class="ev-card${past ? " is-past" : ""}">
+        <div class="ev-card__media">
+          <img src="${esc(e.image)}" alt="${esc(e.alt || "")}" loading="lazy">
+          <span class="ev-card__badge">
+            <strong>${fmt(e.show, { day: "numeric" })}</strong>${fmt(e.show, { month: "short" })}
+          </span>
+        </div>
+        <div class="ev-card__body">
+          <h3>${esc(e.title)}</h3>
+          <p class="ev-card__meta">
+            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              <time datetime="${e.show}">${fmt(e.show, { weekday: "short", day: "numeric", month: "long" })}</time>${e.repeatWeekly && !past ? " · weekly" : ""}</span>
+            ${e.place ? `<span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>${esc(e.place)}</span>` : ""}
+          </p>
+          <p>${esc(e.summary)}</p>
+          <a class="ev-card__link" href="${esc(e.href)}">${past ? "See what happened" : "Full details"}<span class="sr-only"> – ${esc(e.title)}</span> <span aria-hidden="true">→</span></a>
+        </div>
+      </article>`;
+    const empty = msg => `<p class="ev-empty">${msg}</p>`;
+    if (evUp) evUp.innerHTML = upcoming.length ? upcoming.slice(0, 6).map(e => card(e, false)).join("") : empty("Nothing on right now – check back soon.");
+    if (evPast) evPast.innerHTML = recent.length ? recent.slice(0, 6).map(e => card(e, true)).join("") : empty("No recent events.");
+    if (!upcoming.length && !recent.length) evUp?.closest("section")?.setAttribute("hidden", "");
   }
 
   /* ---------- News: stale posts drop off the homepage ---------- */
@@ -109,6 +112,7 @@
   }
 
   /* ---------- Count-up stats ---------- */
+  document.querySelectorAll("[data-since]").forEach(el => { el.dataset.count = new Date().getFullYear() - +el.dataset.since; el.textContent = el.dataset.count; });
   const counters = document.querySelectorAll("[data-count]");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (counters.length && !reduce && "IntersectionObserver" in window) {
@@ -135,6 +139,46 @@
   } else {
     document.querySelectorAll(".reveal").forEach(el => el.classList.add("is-in"));
   }
+
+  /* ---------- Tabs (events, membership) ---------- */
+  document.querySelectorAll("[data-tabs]").forEach(group => {
+    const tabs = [...group.querySelectorAll('[role="tab"]')];
+    const select = tab => tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+    tabs.forEach((t, i) => {
+      t.addEventListener("click", () => select(t));
+      t.addEventListener("keydown", e => {
+        const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+        if (d) { const n = tabs[(i + d + tabs.length) % tabs.length]; select(n); n.focus(); }
+      });
+    });
+  });
+
+  /* ---------- Honours slider ---------- */
+  document.querySelectorAll("[data-slider]").forEach(sl => {
+    const slides = [...sl.querySelectorAll(".slide")];
+    const count = sl.querySelector("[data-slide-count]");
+    let i = 0;
+    const show = n => {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => { s.hidden = k !== i; });
+      if (count) count.innerHTML = `<strong>${i + 1}</strong> / ${slides.length}`;
+    };
+    sl.querySelector("[data-prev]")?.addEventListener("click", () => show(i - 1));
+    sl.querySelector("[data-next]")?.addEventListener("click", () => show(i + 1));
+    show(0);
+  });
+
+  /* ---------- Newsletter (prototype: opens an email to the club) ---------- */
+  document.querySelectorAll("[data-newsletter]").forEach(f => f.addEventListener("submit", e => {
+    e.preventDefault();
+    const email = f.querySelector("input[type=email]").value;
+    location.href = `mailto:steve@parnellcricket.co.nz?subject=${encodeURIComponent("Newsletter sign-up")}&body=${encodeURIComponent("Please add " + email + " to the club newsletter.")}`;
+  }));
 
   /* ---------- Footer year ---------- */
   document.querySelectorAll("[data-year]").forEach(el => (el.textContent = new Date().getFullYear()));
