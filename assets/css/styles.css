@@ -765,3 +765,54 @@ p { margin: 0; }
   .sponsor__go { top: 14px; right: 14px; bottom: auto; width: 32px; height: 32px; }
   .sponsor__meta strong { font-size: 15px; }
 }
+
+/* =====================================================================
+   PHONE POLISH – compact announcement bar, centred content
+   ===================================================================== */
+.season__short { display: none; }
+/* Menu icon: only one shows at a time */
+.nav-toggle svg.ic-close { display: none; }
+.nav-toggle[aria-expanded="true"] svg.ic-menu { display: none; }
+.nav-toggle[aria-expanded="true"] svg.ic-close { display: block; }
+
+@media (max-width: 720px) {
+  .season { font-size: 14px; }
+  .season__inner { flex-wrap: nowrap; min-height: 40px; gap: 10px; padding-top: 6px; padding-bottom: 6px; }
+  .season__label { display: none; }
+  .season__msg { order: 0; flex: 1; flex-basis: auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .season__long { display: none; }
+  .season__short { display: inline; }
+  .season__cta { font-size: 14px; }
+}
+
+@media (max-width: 760px) {
+  /* Hero */
+  .hero .container { text-align: center; }
+  .hero h1 { margin-inline: auto; }
+  .hero__lead { margin-inline: auto; }
+  .hero__actions { justify-content: center; }
+  /* Section headings */
+  .section-head { flex-direction: column; align-items: center; text-align: center; }
+  .section-head .lead { margin-inline: auto; }
+  .lead { margin-inline: auto; }
+  /* Community card */
+  .community__card { text-align: center; justify-items: center; }
+  .community__card .btn { justify-self: center; }
+  .community__card .ticks { width: fit-content; margin-inline: auto; text-align: left; }
+  /* Honours */
+  .slide { text-align: center; }
+  .slide blockquote::before { margin-inline: auto; }
+  .honours__nav { justify-content: center; }
+  /* Facilities, fees fine print, sponsors already centred */
+  /* Footer */
+  .footer__news { flex-direction: column; align-items: center; text-align: center; }
+  .footer__news img { margin-inline: auto; }
+  .footer__top { text-align: center; }
+  .footer__top > :first-child { display: grid; justify-items: center; }
+  .social { justify-content: center; }
+  .footer__bottom { justify-content: center; text-align: center; }
+  /* Juniors page headings */
+  .split > .h2, .split > div:first-child { text-align: center; }
+  .split > div .lead { margin-inline: auto; }
+  #facts-title, #steps-title { text-align: center; }
+}
