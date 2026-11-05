@@ -90,6 +90,8 @@ window.SITE = {
     { name: "Players Sports", href: "https://www.playerssports.co.nz/products/category/500/parnell-cricket-club", logo: IMG + "650e4c20299a53936d88c704/650edac6deb4bb6ff2267cdf_player-sports-white_500.png" },
     { name: "PlaceMakers", href: "https://www.placemakers.co.nz/online/", logo: IMG + "650e4c20299a53936d88c704/650edbc1d96dabfaacf8b639_placemakers-white_500.png" },
     { name: "TransBuild", href: "https://transbuild.co.nz/", logo: IMG + "650e4c20299a53936d88c704/650edbff5608c727a78ba5a5_transbuild-white_500.png" },
-    { name: "General Capital", href: "https://gencap.co.nz/", logo: "", logoTile: IMG + "650e4c20299a53936d88c704/69aa9377270d5dd932a05404_General%20Capital%20(1).jpg" }
+    // General Capital only supplied a colour logo; `knockout` turns it into a white-on-transparent
+    // version in the browser so it matches the others. Swap for an official mono logo when supplied.
+    { name: "General Capital", href: "https://gencap.co.nz/", logo: "", knockout: IMG + "650e4c20299a53936d88c704/69aa9377270d5dd932a05404_General%20Capital%20(1).jpg" }
   ]
 };

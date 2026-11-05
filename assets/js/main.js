@@ -94,7 +94,7 @@
   if (spWrap && S.sponsors) {
     spWrap.innerHTML = S.sponsors.map(s => `
       <li><a class="sponsor" href="${esc(s.href)}" target="_blank" rel="noopener">
-        <span class="sponsor__logo">${s.logo ? `<img src="${esc(s.logo)}" alt="" loading="lazy">`
+        <span class="sponsor__logo">${s.knockout ? `<img data-knockout="${esc(s.knockout)}" alt="" hidden><span class="wordmark">${esc(s.name)}</span>` : s.logo ? `<img src="${esc(s.logo)}" alt="" loading="lazy">`
           : s.logoTile ? `<img class="is-tile" src="${esc(s.logoTile)}" alt="" loading="lazy">`
           : `<span class="wordmark">${esc(s.name)}</span>`}</span>
         <span class="sponsor__meta"><strong>${esc(s.name)}</strong><span>${esc(host(s.href))}</span></span>
@@ -107,6 +107,37 @@
         <span class="sponsor__go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
       </a></li>`;
   }
+
+  /* Knock out a coloured logo's background so it matches the white logos */
+  document.querySelectorAll("img[data-knockout]").forEach(async img => {
+    try {
+      const bmp = await createImageBitmap(await (await fetch(img.dataset.knockout, { mode: "cors" })).blob());
+      const W = bmp.width, H = bmp.height, c = document.createElement("canvas"); c.width = W; c.height = H;
+      const x = c.getContext("2d"); x.drawImage(bmp, 0, 0);
+      const p = x.getImageData(0, 0, W, H).data;
+      const isBg = i => p[i + 2] > p[i] + 40 && p[i + 2] > p[i + 1] + 20;
+      let x0 = W, y0 = H, x1 = 0, y1 = 0, r = 0, g = 0, b = 0, n = 0;
+      for (let y = 0; y < H; y++) for (let X = 0; X < W; X++) { const i = (y * W + X) * 4; if (isBg(i)) { x0 = Math.min(x0, X); x1 = Math.max(x1, X); y0 = Math.min(y0, y); y1 = Math.max(y1, y); r += p[i]; g += p[i + 1]; b += p[i + 2]; n++; } }
+      if (!n) return;
+      r /= n; g /= n; b /= n;
+      const out = x.createImageData(W, H), o = out.data;
+      let a0 = W, b0 = H, a1 = 0, b1 = 0;
+      for (let y = y0 + 4; y <= y1 - 4; y++) for (let X = x0 + 4; X <= x1 - 4; X++) {
+        const i = (y * W + X) * 4, a = Math.max(0, Math.min(1, (Math.hypot(p[i] - r, p[i + 1] - g, p[i + 2] - b) - 35) / 90));
+        if (a > 0) { o[i] = o[i + 1] = o[i + 2] = 255; o[i + 3] = a * 255; if (a > .3) { a0 = Math.min(a0, X); a1 = Math.max(a1, X); b0 = Math.min(b0, y); b1 = Math.max(b1, y); } }
+      }
+      const c2 = document.createElement("canvas"); c2.width = a1 - a0 + 9; c2.height = b1 - b0 + 9;
+      c2.getContext("2d").putImageData(out, 4 - a0, 4 - b0);
+      img.src = c2.toDataURL("image/png"); img.hidden = false;
+      img.nextElementSibling?.remove();
+    } catch (e) { /* keep the text wordmark */ }
+  });
+
+  /* Nav labels: duplicate the text so it can roll on hover */
+  document.querySelectorAll(".nav > a:not(.btn)").forEach(a => {
+    const t = a.textContent.trim();
+    a.innerHTML = `<span class="roll"><span>${esc(t)}</span><span aria-hidden="true">${esc(t)}</span></span>`;
+  });
 
   /* ---------- Mobile nav ---------- */
   const toggle = $(".nav-toggle");
