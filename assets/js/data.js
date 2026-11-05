@@ -11,7 +11,7 @@ window.SITE = {
     label: "2026/27 season",
     message: "Senior registrations are open. Junior grades are full – join the waitlist and we'll be in touch as places free up.",
     short: "Seniors open · Juniors waitlist",   // shown on phones
-    cta: { text: "Join the club", href: "https://www.parnellcricket.co.nz/register" }
+    cta: { text: "Join the club", href: "join.html" }
   },
 
   /* Events: upcoming first, then past events from the last `recentDays` (marked "Past"), then gone. */
