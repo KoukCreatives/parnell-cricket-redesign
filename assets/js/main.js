@@ -171,7 +171,7 @@
 
   /* ---------- Slide in from bottom (Goal's slideInBottom on ~150 elements) ---------- */
   const revealSel = [
-    ".section-head > *", ".center-head > *", ".statement", ".arc", ".stats .stat", ".quick-grid > *",
+    ".section-head > *", ".center-head > *", ".statement", ".arc", ".showcase", ".stats .stat", ".quick-grid > *",
     ".players__copy > *", ".match", ".ev-card", ".community", ".pass", ".fineprint",
     ".sponsor-grid li", ".slide", ".news", ".center .btn",
     ".photo-grid li", ".faq-card", ".faq details", ".brand__photos img", ".footer__news > *", ".footer__top > div",
@@ -401,6 +401,21 @@
       map.get(e.target.id)?.classList.add("is-current");
     }), { rootMargin: "-40% 0px -55% 0px" });
     map.forEach((a, id) => { const el = document.getElementById(id); if (el) jo.observe(el); });
+  }
+
+  /* ---------- Sticky header: follows the page, logo shrinks after the first scroll ---------- */
+  const hdr = $(".header"), seasonBar = $(".season");
+  if (hdr) {
+    let rafH = 0;
+    const setH = () => {
+      rafH = 0;
+      const bh = seasonBar ? seasonBar.offsetHeight : 0;
+      hdr.style.setProperty("--ht", Math.max(0, bh - scrollY) + "px");
+      hdr.classList.toggle("is-scrolled", scrollY > 40);
+    };
+    addEventListener("scroll", () => { if (!rafH) rafH = requestAnimationFrame(setH); }, { passive: true });
+    addEventListener("resize", setH);
+    setH();
   }
 
   /* ---------- Footer year ---------- */
