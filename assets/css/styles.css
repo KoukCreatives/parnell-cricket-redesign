@@ -1249,3 +1249,34 @@ a.card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.25);
 }
 @keyframes navBeam { to { --beam: 360deg; } }
 @media (prefers-reduced-motion: reduce) { .header .nav::after { animation: none; opacity: 0; } }
+
+/* =====================================================================
+   CLUB LIBRARY – 8/12 list + 4/12 sticky help column; sticky search on phones
+   ===================================================================== */
+.lib-layout { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: clamp(32px, 4vw, 72px); align-items: start; }
+.lib-groups { margin-top: 40px; }
+.lib-search { max-width: none; }
+.lib-aside { position: sticky; top: 110px; display: grid; gap: 20px; }
+.lib-aside__label { font-size: 14px; font-weight: 600; color: var(--muted-dark); margin: 0 0 10px; }
+.lib-jump { padding: 26px 28px; border-radius: var(--r); background: var(--white); border: 1px solid rgba(11,13,19,.08); }
+.lib-jump ul { list-style: none; margin: 0; padding: 0; }
+.lib-jump li + li { border-top: 1px solid rgba(11,13,19,.08); }
+.lib-jump a { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; font-weight: 600; color: var(--ink); text-decoration: none; transition: color .5s var(--soft), padding .6s var(--soft); }
+.lib-jump a::after { content: "→"; color: var(--muted-dark); transition: translate .6s var(--soft), color .5s var(--soft); }
+.lib-jump a:hover { color: var(--maroon); }
+.lib-jump a:hover::after { translate: 4px 0; color: var(--maroon); }
+.lib-help { position: relative; overflow: hidden; isolation: isolate; padding: 32px 28px; border-radius: var(--r); background: var(--maroon); color: var(--white); }
+.lib-help::before { content: ""; position: absolute; right: -80px; top: -80px; z-index: -1; width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(closest-side, rgba(212,171,85,.35), transparent); }
+.lib-help__icon { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.12); color: var(--gold); margin-bottom: 18px; }
+.lib-help h2 { font-family: var(--heading); font-weight: 800; font-size: 26px; line-height: 1.1; letter-spacing: -.02em; margin: 0 0 10px; }
+.lib-help p { color: #f1dede; margin: 0 0 22px; font-size: 16px; }
+.lib-help .lib-help__who { margin: 14px 0 0; font-size: 13px; color: #e2c4c4; }
+@media (max-width: 960px) {
+  .lib-layout { grid-template-columns: minmax(0, 1fr); }
+  .lib-aside { position: static; }
+  .lib-jump { display: none; }
+  /* search follows you down the list, then lets go at the end of it */
+  .lib-search { position: sticky; top: 74px; z-index: 20; box-shadow: 0 0 0 10px var(--paper), 0 18px 24px -10px rgba(11,13,19,.18); }
+  .lib-help { text-align: center; }
+  .lib-help__icon { margin-inline: auto; }
+}
