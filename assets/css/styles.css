@@ -826,3 +826,8 @@ p { margin: 0; }
 .pass__price small { margin-right: 0; }
 /* FAQ card tab label */
 .faq-card::before { content: "FAQs"; display: grid; place-items: center; padding-top: 6px; font: 600 15px/1 var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--maroon); }
+/* Footer link columns: three equal centred columns on phones */
+@media (max-width: 860px) {
+  .footer__top { grid-template-columns: repeat(3, 1fr); gap: 32px 12px; }
+  .footer__top > :first-child { grid-column: 1 / -1; }
+}
