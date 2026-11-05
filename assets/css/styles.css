@@ -824,3 +824,5 @@ p { margin: 0; }
 .pass h3 { text-align: center; }
 .pass__price { display: flex; align-items: baseline; justify-content: center; gap: 8px; }
 .pass__price small { margin-right: 0; }
+/* FAQ card tab label */
+.faq-card::before { content: "FAQs"; display: grid; place-items: center; padding-top: 6px; font: 600 15px/1 var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--maroon); }
