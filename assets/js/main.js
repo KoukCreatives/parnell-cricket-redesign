@@ -76,7 +76,7 @@
     if (!fresh.length) {
       newsWrap.closest("section")?.setAttribute("hidden", "");
     } else {
-      newsWrap.dataset.count = fresh.length;
+      newsWrap.dataset.items = fresh.length;
       newsWrap.innerHTML = fresh.map(n => `
         <article class="news">
           <a href="${esc(n.href)}" class="news__img"><img src="${esc(n.image)}" alt="${esc(n.alt)}" loading="lazy"></a>
