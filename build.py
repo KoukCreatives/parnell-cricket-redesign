@@ -10,7 +10,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-V = "53"  # bump to make browsers fetch fresh CSS/JS
+V = "54"  # bump to make browsers fetch fresh CSS/JS
 
 PAGES = {
     "index":   ("Parnell Cricket Club – Inspiring a love of cricket in Tāmaki Makaurau",
@@ -29,6 +29,8 @@ PAGES = {
                 "New Zealand's oldest cricket club, est. 1858. Our story, values, people, honours, facilities and sponsors.", "club"),
     "news":    ("News & events – Parnell Cricket Club",
                 "Club news, player spotlights and upcoming events at Parnell Cricket Club.", "news"),
+    "sponsors": ("Our Sponsors – Parnell Cricket Club",
+                 "Parnell Cricket Club's principal sponsors, supporting sponsors and funding partners – and how to become a sponsor.", "club"),
     "library": ("Club Library – Parnell Cricket Club",
                 "The full record of Parnell Cricket Club: past seasons, annual reports, honours boards, policies and archived news.", "club"),
 }
