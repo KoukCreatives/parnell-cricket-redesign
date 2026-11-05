@@ -917,3 +917,52 @@ p { margin: 0; }
   .arc .arc__trophy { --ss: .55; width: 165px; height: 231px; }
   .arc .arc__trophy > img { left: 12px; top: 45px; width: 140px; height: 140px; }
 }
+
+/* =====================================================================
+   REFINED INTERACTIONS – nothing "pops": slower, softer, smaller moves
+   ===================================================================== */
+:root { --soft: cubic-bezier(.22,.61,.36,1); --glide: cubic-bezier(.65,0,.35,1); }
+
+/* Main nav: label rolls up to a gold copy, a small dot settles underneath */
+.nav a { position: relative; background: none !important; transition: color .5s var(--soft); }
+.nav .roll { display: inline-block; position: relative; overflow: hidden; vertical-align: top; height: 1.6em; line-height: 1.6; }
+.nav .roll > span { display: block; transition: transform .55s var(--glide); }
+.nav .roll > span + span { position: absolute; left: 0; top: 100%; color: var(--gold); }
+.nav a:hover .roll > span, .nav a:focus-visible .roll > span { transform: translateY(-100%); }
+.nav a::after { content: ""; position: absolute; left: 50%; bottom: 4px; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); opacity: 0; transform: translate(-50%, 4px); transition: opacity .45s var(--soft), transform .55s var(--soft); }
+.nav a:hover::after, .nav a:focus-visible::after, .nav a[aria-current="page"]::after { opacity: 1; transform: translate(-50%, 0); }
+@media (max-width: 1080px) { .nav a::after { display: none; } .nav .roll { height: auto; overflow: visible; } .nav .roll > span + span { display: none; } }
+
+/* Buttons: slower fill, no jump */
+.btn:hover { transform: none; }
+.btn::before { transition: height .6s var(--soft); }
+.btn { transition: color .5s var(--soft), border-color .5s var(--soft); }
+
+/* Cards: gentle lift, slow image drift */
+.qt, .sponsor, .pass, .match__side, .ev-card, .news { transition: transform .7s var(--soft), box-shadow .7s var(--soft), border-color .6s var(--soft), background .6s var(--soft); }
+.qt:hover, .qt:focus-visible { transform: translateY(-3px); }
+.qt:hover > img, .qt:focus-visible > img { transform: scale(1.04); }
+.qt > img { transition: transform 1.4s var(--soft); }
+.qt:hover .qt__go, .qt:focus-visible .qt__go { scale: 1; }
+.qt__go { transition: background .6s var(--soft), color .6s var(--soft), rotate .7s var(--soft); }
+.sponsor:hover, .sponsor:focus-visible { transform: translateY(-3px); }
+.sponsor::before { transition: opacity .7s var(--soft); }
+.sponsor:hover .sponsor__logo img { transform: none; }
+.sponsor__go { transition: background .6s var(--soft), color .6s var(--soft), rotate .7s var(--soft), border-color .6s var(--soft); }
+.you__plus { transition: rotate .9s var(--soft), background .6s var(--soft), color .6s var(--soft); }
+.pass:hover, .match__side:hover { transform: translateY(-3px); }
+.pcard img, .photo-grid img, .news__img img, .ev-card__media img, .match__side img { transition: transform 1.4s var(--soft); }
+.pcard:hover img, .photo-grid li:hover img, .ev-card:hover .ev-card__media img { transform: scale(1.03); }
+.news:hover .news__img img { transform: scale(1.03); }
+.news:hover .news__body { transform: none; }
+.logo-pills a:hover img { transform: none; }
+.social a { transition: background .5s var(--soft), color .5s var(--soft), border-color .5s var(--soft); }
+.faq summary::after { transition: transform .5s var(--soft), background .5s var(--soft); }
+
+/* "Scroll down" notch: one clean shape (no seams at the curves) */
+.notch { width: 340px; height: 56px; border-radius: 0; background: no-repeat center bottom / 100% 100% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 340 56' preserveAspectRatio='none'%3E%3Cpath fill='%23f5f3ef' d='M0 56C24 56 40 50 40 26C40 11 51 0 66 0H274C289 0 300 11 300 26C300 50 316 56 340 56Z'/%3E%3C/svg%3E"); padding-top: 6px; }
+.notch::before, .notch::after { display: none; }
+/* Hero headline on two lines */
+.hero--home h1 { max-width: none; font-size: clamp(44px, 6.4vw, 100px); }
+.hero--home .nowrap { white-space: nowrap; }
+@media (min-width: 861px) { .hero--home .hero__bg { width: 52%; } }
