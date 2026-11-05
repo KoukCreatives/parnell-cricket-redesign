@@ -712,3 +712,56 @@ p { margin: 0; }
 /* Footer social icons – white */
 .social a { background: var(--white); color: var(--ink); border-color: var(--white); transition: background .3s, color .3s, border-color .3s; }
 .social a:hover { background: var(--maroon); color: var(--white); border-color: var(--maroon); }
+
+/* =====================================================================
+   MOBILE / CLEAN-UP PASS
+   ===================================================================== */
+/* Event cards: date + status live in the card body so posters aren't covered */
+.ev-card__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+.ev-card__top .ev-card__badge { position: static; display: inline-flex; align-items: baseline; gap: 6px; width: auto; height: auto; padding: 8px 14px; border-radius: var(--pill); font-size: 14px; }
+.ev-card__top .ev-card__badge strong { font-size: 22px; }
+.ev-card__top .ev-card__past, .ev-card__soon { position: static; padding: 6px 12px; border-radius: var(--pill); font-size: 13px; font-weight: 600; background: var(--ink-3); color: var(--muted); }
+.ev-card__soon { background: rgba(61,220,132,.14); color: #7ff0b0; }
+
+/* Honours: slides stack in one cell so the height never jumps */
+.honours { display: grid; }
+.honours .slide { grid-area: 1 / 1; visibility: hidden; }
+.honours .slide.is-active { visibility: visible; }
+.honours__nav { grid-area: 2 / 1; }
+
+/* Facilities tab never wraps */
+.match__tab { white-space: nowrap; }
+
+/* Mobile menu: toggle stays on top and turns into a close (X) */
+.nav-toggle .ic-close { display: none; }
+.nav-toggle[aria-expanded="true"] .ic-menu { display: none; }
+.nav-toggle[aria-expanded="true"] .ic-close { display: block; }
+@media (max-width: 1080px) {
+  .nav-toggle[aria-expanded="true"] { position: fixed; top: 20px; right: var(--gutter); z-index: 50; background: var(--white); color: var(--ink); }
+  .nav { z-index: 45; }
+}
+
+@media (max-width: 860px) {
+  /* Player cards: no sticky overlay on phones – heading first, cards in a tidy grid */
+  .players__sticky { position: static; height: auto; padding: 96px var(--gutter) 32px; }
+  .players__cards { margin-top: 0; padding-bottom: 96px; grid-template-columns: 1fr 1fr; gap: 14px; row-gap: 14px; }
+  .pcard, .pcard:nth-child(odd), .pcard:nth-child(even) { width: 100%; margin-top: 0; rotate: 0deg; translate: none; justify-self: stretch; }
+  /* Photo arc: smaller and no clipped circles */
+  .arc { height: 210px; }
+  .arc img:nth-child(2), .arc img:nth-child(7) { display: none; }
+  .arc img { translate: none !important; }
+  /* Single news card stacks */
+  .news-grid[data-items="1"] .news { grid-template-columns: 1fr; }
+  /* Gentler reveal distance */
+  .motion .reveal { translate: 0 40px; }
+}
+@media (max-width: 480px) {
+  .arc img:nth-child(3), .arc img:nth-child(6) { display: none; }
+  .arc { height: 190px; }
+}
+
+/* Sponsor cards on small screens: arrow moves to the corner so it never sits on the name */
+@media (max-width: 760px) {
+  .sponsor__go { top: 14px; right: 14px; bottom: auto; width: 32px; height: 32px; }
+  .sponsor__meta strong { font-size: 15px; }
+}
