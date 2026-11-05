@@ -1112,3 +1112,4 @@ a.card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.25);
 .history__intro .eyebrow, .block__head .eyebrow { justify-self: start; }
 .history--static .history__intro .eyebrow { justify-self: center; }
 @media (max-width: 600px) { .block__head .eyebrow { justify-self: center; } }
+.history--static .history__photo { width: 100%; justify-self: stretch; } .history--static .history__photo img { height: 240px; }
