@@ -816,3 +816,7 @@ p { margin: 0; }
   .split > div .lead { margin-inline: auto; }
   #facts-title, #steps-title { text-align: center; }
 }
+@media (max-width: 860px) {
+  .community { background: none; gap: 14px; overflow: visible; border-radius: 0; }
+  .community__img { border-radius: var(--r-lg); min-height: 0; aspect-ratio: 4 / 3; height: auto; }
+}
