@@ -546,3 +546,69 @@ p { margin: 0; }
 .gallery.is-drag img { scale: .98; }
 
 /* Arc photos & tilt photos are driven by --py / --pr from JS */
+
+/* =====================================================================
+   MAIN CTA – "What are you here for?" bento
+   ===================================================================== */
+.quick { margin-top: -8px; }
+.quick__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; margin-bottom: 28px; }
+.quick__head .eyebrow { order: 2; }
+.quick__title { font-size: clamp(40px, 5.4vw, 72px); color: var(--ink); }
+.quick-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: 300px 220px; gap: 16px; }
+
+.qt { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: flex-end; padding: 28px; border-radius: 28px; color: var(--white); text-decoration: none; background: var(--ink); box-shadow: 0 30px 60px -36px rgba(11,13,19,.55); transition: transform .45s var(--ease, ease), box-shadow .45s; }
+.qt > img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform .9s cubic-bezier(.25,.46,.45,.94), filter .5s; }
+.qt::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(11,13,19,.05) 20%, rgba(11,13,19,.88) 100%); transition: opacity .4s; }
+.qt:hover, .qt:focus-visible { transform: translateY(-6px); box-shadow: 0 40px 70px -34px rgba(11,13,19,.7); }
+.qt:hover > img, .qt:focus-visible > img { transform: scale(1.08); }
+.qt:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+
+.qt__body { display: grid; gap: 6px; max-width: 100%; }
+.qt__kicker { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); }
+.qt__label { font-family: var(--display); text-transform: uppercase; font-size: clamp(34px, 3.4vw, 46px); line-height: .95; }
+.qt__sub { font-size: 15px; color: #e4e4e6; }
+
+/* Round arrow button – spins & fills on hover */
+.qt__go { position: absolute; top: 22px; right: 22px; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.16); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.3); color: var(--white); transition: background .35s, color .35s, rotate .45s cubic-bezier(.25,.46,.45,.94), scale .35s; }
+.qt:hover .qt__go, .qt:focus-visible .qt__go { background: var(--white); color: var(--ink); rotate: 45deg; scale: 1.08; }
+
+/* Hero tile: Join the club */
+.qt--join { grid-row: 1 / span 2; padding: 36px; background: var(--maroon); }
+.qt--join > img { filter: saturate(.9); }
+.qt--join::before { background: linear-gradient(180deg, rgba(123,21,22,.15) 0%, rgba(123,21,22,.55) 45%, rgba(74,10,11,.97) 100%); }
+.qt--join .qt__label { font-size: clamp(56px, 6.2vw, 92px); }
+.qt--join .qt__sub { font-size: 17px; }
+.qt--join .qt__go { width: 72px; height: 72px; top: 28px; right: 28px; background: var(--gold); border-color: var(--gold); color: var(--ink); }
+.qt--join:hover .qt__go { background: var(--white); }
+.qt__cta { margin-top: 18px; justify-self: start; display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 28px; border-radius: var(--pill); background: var(--white); color: var(--ink); font-weight: 700; font-size: 17px; transition: background .35s, color .35s, gap .35s; }
+.qt--join:hover .qt__cta { background: var(--gold); gap: 16px; }
+.qt__status { position: absolute; top: 34px; left: 36px; display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px 8px 12px; border-radius: var(--pill); background: rgba(11,13,19,.55); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-size: 14px; font-weight: 600; }
+.pulse { position: relative; width: 10px; height: 10px; border-radius: 50%; background: #3ddc84; }
+.pulse::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: #3ddc84; animation: pulse 1.8s ease-out infinite; }
+@keyframes pulse { from { transform: scale(1); opacity: .8; } to { transform: scale(3); opacity: 0; } }
+
+/* Talk to us tile */
+.qt--talk { grid-column: 2 / span 2; align-items: center; gap: 28px; background: radial-gradient(120% 160% at 100% 0%, #3a0b0c 0%, var(--ink) 60%); }
+.qt--talk::before { display: none; }
+.qt--talk .qt__go { position: static; margin-left: auto; flex: none; }
+.qt__faces { display: flex; flex: none; }
+.qt__faces span { width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-size: 28px; background: var(--maroon); border: 3px solid var(--ink); }
+.qt__faces span + span { margin-left: -18px; background: var(--gold); color: var(--ink); }
+
+@media (max-width: 1000px) {
+  .quick-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 420px 220px auto; }
+  .qt--join { grid-column: 1 / -1; grid-row: auto; }
+  .qt--talk { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .quick-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .qt { min-height: 200px; padding: 22px; }
+  .qt--join { min-height: 440px; padding: 24px; }
+  .qt__status { top: 22px; left: 22px; font-size: 13px; }
+  .qt--join .qt__go { width: 60px; height: 60px; top: 70px; right: 22px; }
+  .qt--talk { flex-wrap: wrap; gap: 16px; }
+  .qt--talk .qt__go { position: absolute; top: 22px; right: 22px; }
+  .qt__faces span { width: 60px; height: 60px; font-size: 22px; }
+  .qt__cta { width: 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { .pulse::after { animation: none; } }
