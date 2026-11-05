@@ -1217,3 +1217,18 @@ a.card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.25);
   .venue__cta { justify-self: stretch; justify-content: center; }
   .venue__go { width: 48px; height: 48px; top: 18px; right: 18px; }
 }
+
+/* =====================================================================
+   FIRST-LOAD FIT – logo and hero scale with screen height so the whole
+   banner (badge, headline, intro, buttons) shows without scrolling,
+   including laptops and browsers zoomed to 125%.
+   ===================================================================== */
+@media (min-width: 1081px) {
+  :root { --logo: clamp(50px, 9.5vh, 76px); }
+  .logo img { height: var(--logo); }
+  .header { padding: clamp(12px, 2.2vh, 22px) 0; }
+  .hero--home { min-height: calc(100svh - 48px); max-height: 1000px; padding-top: calc(var(--logo) + clamp(56px, 10vh, 110px)); padding-bottom: clamp(40px, 8vh, 110px); }
+  .hero--home h1 { font-size: clamp(44px, min(6.4vw, 13.5vh), 100px); margin: clamp(10px, 2.4vh, 24px) 0; }
+  .hero--home .hero__lead { font-size: clamp(16px, min(1.7vw, 2.6vh), 20px); }
+  .hero--home .hero__actions { margin-top: clamp(18px, 3.6vh, 36px); }
+}
