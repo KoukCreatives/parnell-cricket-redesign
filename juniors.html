@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=50">
+  <link rel="stylesheet" href="assets/css/styles.css?v=51">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -39,7 +39,7 @@
 
     <main id="main">
       <section class="hero hero--page">
-        <img class="hero__bg" src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/65dffa984e633be2c98b4371_Junior2.jpg" alt="" fetchpriority="high" style="object-position:70% 30%">
+        <img class="hero__bg" src="https://lh3.googleusercontent.com/d/1re01rojJPfZtR_uB48awVonk8NuCkNpU=w2400" alt="" fetchpriority="high" style="object-position:center 40%">
         <div class="container">
           <span class="eyebrow">Years 0–8 · Boys, girls &amp; mixed</span>
           <h1 class="display">Junior <em>Cricket</em></h1>
@@ -145,15 +145,16 @@
   <footer class="footer">
     <div class="container">
       <div class="footer__news">
-        <div>
-          <img src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/656721f93446116e4db88f15_left-white-text.png" alt="Parnell Cricket Club">
+        <a class="footer__logo" href="index.html"><img src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/656721f93446116e4db88f15_left-white-text.png" alt="Parnell Cricket Club – home"></a>
+        <div class="footer__signup">
           <h2 class="footer__news-title">Subscribe to Our Newsletter</h2>
+          <p class="footer__news-sub">Club news, draws and events – straight to your inbox.</p>
+          <form class="newsletter" data-newsletter>
+            <label class="sr-only" for="nl-email">Email address</label>
+            <input id="nl-email" type="email" required placeholder="Your email address" autocomplete="email">
+            <button class="btn btn--light" type="submit">Subscribe</button>
+          </form>
         </div>
-        <form class="newsletter" data-newsletter>
-          <label class="sr-only" for="nl-email">Email address</label>
-          <input id="nl-email" type="email" required placeholder="Your email address" autocomplete="email">
-          <button class="btn btn--light" type="submit">Subscribe</button>
-        </form>
       </div>
       <div class="footer__top">
         <div>
@@ -201,7 +202,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/data.js?v=50"></script>
-  <script src="assets/js/main.js?v=50"></script>
+  <script src="assets/js/data.js?v=51"></script>
+  <script src="assets/js/main.js?v=51"></script>
 </body>
 </html>
