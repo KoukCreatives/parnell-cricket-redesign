@@ -43,12 +43,12 @@
       <article class="ev-card${past ? " is-past" : ""}">
         <div class="ev-card__media">
           <img src="${esc(e.image)}" alt="${esc(e.alt || "")}" loading="lazy">
-          ${past ? `<span class="ev-card__past">Past event</span>` : ""}
-          <span class="ev-card__badge">
-            <strong>${fmt(e.show, { day: "numeric" })}</strong>${fmt(e.show, { month: "short" })}
-          </span>
         </div>
         <div class="ev-card__body">
+          <div class="ev-card__top">
+            <span class="ev-card__badge"><strong>${fmt(e.show, { day: "numeric" })}</strong>${fmt(e.show, { month: "short" })}</span>
+            ${past ? `<span class="ev-card__past">Past event</span>` : `<span class="ev-card__soon">Upcoming</span>`}
+          </div>
           <h3>${esc(e.title)}</h3>
           <p class="ev-card__meta">
             <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
@@ -112,11 +112,13 @@
   const toggle = $(".nav-toggle");
   const nav = $("#site-nav");
   if (toggle && nav) {
+    nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => { if (toggle.getAttribute("aria-expanded") === "true") toggle.click(); }));
     toggle.addEventListener("click", () => {
       const open = toggle.getAttribute("aria-expanded") === "true";
       toggle.setAttribute("aria-expanded", String(!open));
       nav.classList.toggle("is-open", !open);
       document.body.classList.toggle("nav-open", !open);
+      toggle.querySelector(".sr-only").textContent = open ? "Menu" : "Close menu";
     });
   }
 
@@ -160,7 +162,7 @@
 
   /* ---------- Scroll-linked parallax (arc photos, player cards, partner photos) ---------- */
   const px = [...document.querySelectorAll("[data-parallax]")];
-  if (px.length && !reduce) {
+  if (px.length && !reduce && matchMedia("(min-width: 861px)").matches) {
     let ticking = false;
     const update = () => {
       const vh = innerHeight;
@@ -239,7 +241,7 @@
     let i = 0;
     const show = n => {
       i = (n + slides.length) % slides.length;
-      slides.forEach((s, k) => { s.hidden = k !== i; s.classList.toggle("is-active", k === i); });
+      slides.forEach((s, k) => { s.hidden = false; s.classList.toggle("is-active", k === i); s.setAttribute("aria-hidden", String(k !== i)); s.inert = k !== i; });
       if (count) count.innerHTML = `<strong>${i + 1}</strong> / ${slides.length}`;
     };
     sl.querySelector("[data-prev]")?.addEventListener("click", () => show(i - 1));
