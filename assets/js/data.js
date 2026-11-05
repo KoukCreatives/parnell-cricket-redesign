@@ -29,7 +29,7 @@ window.SITE = {
     },
     {
       title: "Parnell Cricket Club Quiz Night",
-      date: "2026-10-29",
+      date: "2026-10-22",
       time: "6.30pm",
       place: "Parnell Cricket Clubhouse, Shore Rd",
       summary: "A fundraising night of fun, quiz and friendship. Pay at the door or reserve a table.",
