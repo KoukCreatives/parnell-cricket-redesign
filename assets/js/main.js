@@ -16,7 +16,7 @@
     bar.innerHTML = `
       <div class="container season__inner">
         <span class="season__label">${esc(S.season.label)}</span>
-        <p class="season__msg">${esc(S.season.message)}</p>
+        <p class="season__msg"><span class="season__long">${esc(S.season.message)}</span><span class="season__short">${esc(S.season.short || S.season.message)}</span></p>
         <a class="season__cta" href="${esc(S.season.cta.href)}">${esc(S.season.cta.text)} <span aria-hidden="true">→</span></a>
       </div>`;
   }
