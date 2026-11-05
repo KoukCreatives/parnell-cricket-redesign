@@ -966,3 +966,6 @@ p { margin: 0; }
 .hero--home h1 { max-width: none; font-size: clamp(44px, 6.4vw, 100px); }
 .hero--home .nowrap { white-space: nowrap; }
 @media (min-width: 861px) { .hero--home .hero__bg { width: 52%; } }
+@media (min-width: 861px) {
+  .hero--home::before { background: linear-gradient(90deg, var(--ink) 0%, var(--ink) 48.5%, rgba(11,13,19,.75) 54%, rgba(11,13,19,.25) 62%, rgba(11,13,19,0) 70%), linear-gradient(0deg, rgba(11,13,19,.85) 0%, transparent 30%); }
+}
