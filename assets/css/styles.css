@@ -664,3 +664,22 @@ p { margin: 0; }
 .you__plus { width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; font-size: 46px; font-weight: 300; color: var(--gold); border: 1.5px dashed var(--gold); transition: rotate .5s var(--ease), background .35s, color .35s; }
 .sponsor--you:hover .you__plus { rotate: 90deg; background: var(--gold); color: var(--ink); }
 .sponsor--you .sponsor__meta strong { color: var(--gold); }
+
+/* Partners – light version */
+.partners { background: var(--paper); color: var(--ink); border-radius: var(--r-lg); margin: 0 12px; }
+.partners .center-head .lead { color: var(--muted-dark); }
+.partners .center-head { margin-bottom: 56px; }
+.sponsor { background: var(--white); color: var(--ink); border: 1px solid rgba(11,13,19,.08); box-shadow: 0 18px 40px -30px rgba(11,13,19,.35); }
+.sponsor__logo img:not(.is-tile) { filter: brightness(0); transition: transform .5s var(--ease), filter .35s; }
+.sponsor:hover .sponsor__logo img:not(.is-tile), .sponsor:focus-visible .sponsor__logo img:not(.is-tile) { filter: none; }
+.sponsor:hover, .sponsor:focus-visible { color: var(--white); box-shadow: 0 30px 60px -28px rgba(123,21,22,.55); }
+.sponsor__meta { border-top-color: rgba(11,13,19,.1); }
+.sponsor__meta span { color: var(--muted-dark); }
+.sponsor:hover .sponsor__meta { border-top-color: rgba(255,255,255,.2); }
+.sponsor__go { border-color: rgba(11,13,19,.2); }
+.sponsor:hover .sponsor__go { border-color: var(--gold); }
+.sponsor--you { background: transparent; border: 1.5px dashed var(--maroon); box-shadow: none; }
+.you__plus { color: var(--maroon); border-color: var(--maroon); }
+.sponsor--you .sponsor__meta strong { color: var(--maroon); }
+.sponsor--you:hover .you__plus { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+.sponsor--you:hover .sponsor__meta strong { color: var(--gold); }
