@@ -5,15 +5,16 @@
   <footer class="footer">
     <div class="container">
       <div class="footer__news">
-        <div>
-          <img src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/656721f93446116e4db88f15_left-white-text.png" alt="Parnell Cricket Club">
+        <a class="footer__logo" href="index.html"><img src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/656721f93446116e4db88f15_left-white-text.png" alt="Parnell Cricket Club – home"></a>
+        <div class="footer__signup">
           <h2 class="footer__news-title">Subscribe to Our Newsletter</h2>
+          <p class="footer__news-sub">Club news, draws and events – straight to your inbox.</p>
+          <form class="newsletter" data-newsletter>
+            <label class="sr-only" for="nl-email">Email address</label>
+            <input id="nl-email" type="email" required placeholder="Your email address" autocomplete="email">
+            <button class="btn btn--light" type="submit">Subscribe</button>
+          </form>
         </div>
-        <form class="newsletter" data-newsletter>
-          <label class="sr-only" for="nl-email">Email address</label>
-          <input id="nl-email" type="email" required placeholder="Your email address" autocomplete="email">
-          <button class="btn btn--light" type="submit">Subscribe</button>
-        </form>
       </div>
       <div class="footer__top">
         <div>
