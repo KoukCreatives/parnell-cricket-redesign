@@ -831,3 +831,18 @@ p { margin: 0; }
   .footer__top { grid-template-columns: repeat(3, 1fr); gap: 32px 12px; }
   .footer__top > :first-child { grid-column: 1 / -1; }
 }
+/* Photo arc on phones: simple row, nothing overlaps or gets cut off */
+@media (max-width: 860px) {
+  .arc { display: flex; justify-content: center; align-items: center; gap: 12px; height: auto; margin-top: 40px; }
+  .arc img, .arc .arc__c { position: static; transform: none !important; translate: none !important; flex: none; }
+  .arc .arc__c { width: 150px; height: 150px; order: 0; }
+  .arc img:not(.arc__c) { width: 72px; height: 72px; margin-top: 40px; }
+  .arc img:nth-child(3) { order: -2; margin-top: 90px; }
+  .arc img:nth-child(4) { order: -1; }
+  .arc img:nth-child(5) { order: 1; }
+  .arc img:nth-child(6) { order: 2; margin-top: 90px; }
+}
+@media (max-width: 480px) {
+  .arc .arc__c { width: 140px; height: 140px; }
+  .arc img:not(.arc__c) { width: 68px; height: 68px; }
+}
