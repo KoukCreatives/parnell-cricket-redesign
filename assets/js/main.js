@@ -89,14 +89,29 @@
     }
   }
 
-  /* ---------- Sponsors: every logo links out ---------- */
+  /* ---------- Sponsors: big linked logo cards + marquee ---------- */
+  const host = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch (e) { return ""; } };
   const spWrap = $("[data-sponsors]");
   if (spWrap && S.sponsors) {
     spWrap.innerHTML = S.sponsors.map(s => `
-      <li><a href="${esc(s.href)}" target="_blank" rel="noopener">
-        ${s.logo ? `<img src="${esc(s.logo)}" alt="${esc(s.name)}" loading="lazy">` : `<span class="wordmark">${esc(s.name)}</span>`}
+      <li><a class="sponsor" href="${esc(s.href)}" target="_blank" rel="noopener">
+        <span class="sponsor__logo">${s.logo ? `<img src="${esc(s.logo)}" alt="" loading="lazy">`
+          : s.logoTile ? `<img class="is-tile" src="${esc(s.logoTile)}" alt="" loading="lazy">`
+          : `<span class="wordmark">${esc(s.name)}</span>`}</span>
+        <span class="sponsor__meta"><strong>${esc(s.name)}</strong><span>${esc(host(s.href))}</span></span>
+        <span class="sponsor__go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         <span class="sr-only"> (opens in a new tab)</span>
-      </a></li>`).join("");
+      </a></li>`).join("") + `
+      <li><a class="sponsor sponsor--you" href="https://www.parnellcricket.co.nz/sponsors">
+        <span class="sponsor__logo"><span class="you__plus" aria-hidden="true">+</span></span>
+        <span class="sponsor__meta"><strong>Your brand here</strong><span>Become a partner</span></span>
+        <span class="sponsor__go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+      </a></li>`;
+  }
+  const mq = $("[data-sponsor-marquee]");
+  if (mq && S.sponsors) {
+    const one = S.sponsors.map(s => `<span class="marquee__item">${s.logo ? `<img src="${esc(s.logo)}" alt="">` : `<span class="wordmark">${esc(s.name)}</span>`}</span><span class="marquee__dot"></span>`).join("");
+    mq.innerHTML = one + one;
   }
 
   /* ---------- Mobile nav ---------- */
@@ -130,7 +145,7 @@
   const revealSel = [
     ".section-head > *", ".center-head > *", ".statement", ".arc", ".stats .stat", ".quick-grid > *",
     ".players__copy > *", ".match", ".ev-card", ".community", ".pass", ".fineprint",
-    ".partners h2", ".logo-pills li", ".partners__note", ".slide", ".news", ".center .btn",
+    ".sponsor-grid li", ".slide", ".news", ".center .btn",
     ".gallery li", ".faq-card", ".faq details", ".brand__photos img", ".footer__news > *", ".footer__top > div",
     ".facts .fact", ".ages .age", ".steps li", ".checklist li", ".split > div > .h2", ".split > .h2"
   ].join(",");
