@@ -10,7 +10,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-V = "52"  # bump to make browsers fetch fresh CSS/JS
+V = "53"  # bump to make browsers fetch fresh CSS/JS
 
 PAGES = {
     "index":   ("Parnell Cricket Club – Inspiring a love of cricket in Tāmaki Makaurau",
