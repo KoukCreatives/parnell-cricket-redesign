@@ -900,3 +900,20 @@ p { margin: 0; }
   .arc .arc__trophy > img { left: 0; top: 30px; }
 }
 @media (max-width: 480px) { .arc .arc__trophy { width: 140px; height: 200px; } }
+/* Spline scenes don't rescale to small canvases (they crop), so render them at a fixed
+   size and scale the whole canvas down instead. */
+[data-spline] spline-viewer { inset: auto; left: 50%; top: 50%; width: var(--sw); height: var(--sh); transform: translate(-50%, -50%) scale(var(--ss, 1)); transform-origin: center; }
+.arc .arc__trophy { --sw: 300px; --sh: 420px; --ss: 1; top: -110px; width: 300px; height: 420px; }
+.arc .arc__trophy > img { left: 35px; top: 110px; }
+.arc { margin-top: 110px; }
+.crest3d { --sw: 220px; --sh: 240px; --ss: .92; }
+@media (max-width: 860px) {
+  .arc { margin-top: 40px; }
+  .arc .arc__trophy { --ss: .6; top: auto; width: 180px; height: 252px; }
+  .arc .arc__trophy > img { left: 15px; top: 51px; width: 150px; height: 150px; }
+  .crest3d { --ss: .72; }
+}
+@media (max-width: 480px) {
+  .arc .arc__trophy { --ss: .55; width: 165px; height: 231px; }
+  .arc .arc__trophy > img { left: 12px; top: 45px; width: 140px; height: 140px; }
+}
