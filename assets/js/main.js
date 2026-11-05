@@ -141,7 +141,7 @@
     ".section-head > *", ".center-head > *", ".statement", ".arc", ".stats .stat", ".quick-grid > *",
     ".players__copy > *", ".match", ".ev-card", ".community", ".pass", ".fineprint",
     ".sponsor-grid li", ".slide", ".news", ".center .btn",
-    ".gallery li", ".faq-card", ".faq details", ".brand__photos img", ".footer__news > *", ".footer__top > div",
+    ".photo-grid li", ".faq-card", ".faq details", ".brand__photos img", ".footer__news > *", ".footer__top > div",
     ".facts .fact", ".ages .age", ".steps li", ".checklist li", ".split > div > .h2", ".split > .h2"
   ].join(",");
   document.querySelectorAll(revealSel).forEach(el => {
