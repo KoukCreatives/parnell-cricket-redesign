@@ -683,3 +683,14 @@ p { margin: 0; }
 .sponsor--you .sponsor__meta strong { color: var(--maroon); }
 .sponsor--you:hover .you__plus { background: var(--gold); border-color: var(--gold); color: var(--ink); }
 .sponsor--you:hover .sponsor__meta strong { color: var(--gold); }
+
+/* Season highlights – all photos in a grid */
+.photo-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 260px; grid-auto-flow: dense; gap: 16px; }
+.photo-grid li { overflow: hidden; border-radius: var(--r); background: var(--ink-2); }
+.photo-grid li:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.photo-grid li:nth-child(6), .photo-grid li:nth-child(7) { grid-column: span 2; }
+.photo-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease, ease); }
+.photo-grid li:hover img { transform: scale(1.06); }
+@media (max-width: 860px) {
+  .photo-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 180px; gap: 10px; }
+}
