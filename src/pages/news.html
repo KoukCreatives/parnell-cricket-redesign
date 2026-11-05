@@ -1,0 +1,26 @@
+<main id="main">
+      <section class="page-hero">
+        <img class="page-hero__bg" src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/6671a5de1f8987ec12bb612b_433462050_1135733700716258_793725981255815890_n.jpg" alt="" style="object-position:center 35%">
+        <div class="container">
+          <p class="crumbs"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>News</span></p>
+          <h1 class="display">News &amp; events</h1>
+          <p class="lead">Results, player spotlights and what's on around the club.</p>
+        </div>
+      </section>
+      <div class="jump"><nav aria-label="On this page"><a href="#events">Events</a><a href="#latest">Latest news</a></nav></div>
+
+      <section class="block" id="events" aria-labelledby="nw-ev">
+        <div class="container">
+          <div class="block__head"><h2 id="nw-ev" class="display h2">What's on</h2><p class="lead">Upcoming events first. Past events stay here for a few months, then move to the <a href="library.html#events" style="color:var(--gold)">Club Library</a>.</p></div>
+          <div class="ev-grid" data-events-all></div>
+        </div>
+      </section>
+
+      <section class="block" id="latest" aria-labelledby="nw-latest">
+        <div class="container">
+          <div class="block__head"><h2 id="nw-latest" class="display h2">Latest news</h2></div>
+          <div class="news-grid" data-news data-limit="12"></div>
+          <p style="margin-top:28px"><a class="btn btn--ghost" href="library.html#news">Older news in the Library</a></p>
+        </div>
+      </section>
+    </main>
