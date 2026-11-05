@@ -890,3 +890,13 @@ p { margin: 0; }
 /* Crest above "From Parnell to the world" */
 .crest3d { width: 200px; height: 220px; margin: 0 auto -8px; }
 @media (max-width: 860px) { .crest3d { width: 160px; height: 176px; } }
+/* Give the 3D trophy headroom so the cup isn't clipped */
+.arc .arc__trophy { top: -80px; width: 260px; height: 360px; }
+.arc .arc__trophy > img { left: 15px; top: 80px; }
+.arc { margin-top: 88px; }
+@media (max-width: 860px) {
+  .arc { margin-top: 40px; }
+  .arc .arc__trophy { top: auto; width: 150px; height: 210px; }
+  .arc .arc__trophy > img { left: 0; top: 30px; }
+}
+@media (max-width: 480px) { .arc .arc__trophy { width: 140px; height: 200px; } }
