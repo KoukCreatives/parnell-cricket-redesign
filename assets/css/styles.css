@@ -694,3 +694,4 @@ p { margin: 0; }
 @media (max-width: 860px) {
   .photo-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 180px; gap: 10px; }
 }
+.photo-grid li:nth-child(6) img, .photo-grid li:nth-child(7) img { object-position: center 25%; }
