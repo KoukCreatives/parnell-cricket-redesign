@@ -137,7 +137,7 @@ p { margin: 0; }
 .stat { padding: 8px 16px; }
 .stat + .stat { border-left: 1px solid rgba(11,13,19,.15); }
 .stat strong { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(56px, 7vw, 96px); line-height: 1; color: var(--maroon); }
-.stat span { display: block; margin-top: 10px; color: var(--muted-dark); font-size: 16px; }
+.stat > span { display: block; margin-top: 10px; color: var(--muted-dark); font-size: 16px; }
 @media (max-width: 860px) { .stats { grid-template-columns: 1fr 1fr; row-gap: 32px; } .stat + .stat { border-left: 0; } .stat:last-child { grid-column: 1 / -1; } }
 
 /* ---------- Dark sections ---------- */
@@ -270,9 +270,7 @@ p { margin: 0; }
 .faq details[open] summary::after { transform: rotate(45deg); background: var(--maroon); }
 .faq details p { padding: 0 24px 24px; color: var(--muted-dark); max-width: 70ch; }
 
-/* ---------- Reveal ---------- */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-.reveal.is-in { opacity: 1; transform: none; }
+
 
 /* =====================================================================
    GOAL-STYLE HOMEPAGE SECTIONS
@@ -288,7 +286,7 @@ p { margin: 0; }
 /* 2. About statement + photo arc */
 .statement { font-size: clamp(28px, 4.2vw, 56px); line-height: 1.08; text-align: center; max-width: 22ch; margin: 110px auto 0; color: var(--ink); }
 .arc { position: relative; height: 300px; margin: 48px auto 0; max-width: 1000px; }
-.arc img { position: absolute; left: 50%; top: 0; width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid var(--white); box-shadow: 0 12px 30px -12px rgba(11,13,19,.45);
+.arc img { translate: 0 var(--py, 0); position: absolute; left: 50%; top: 0; width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid var(--white); box-shadow: 0 12px 30px -12px rgba(11,13,19,.45);
   transform: translateX(calc(-50% + var(--i) * 150px)) translateY(calc((var(--i) * var(--i)) * 14px + 70px)); }
 .arc .arc__c { width: 230px; height: 230px; border-radius: var(--r); z-index: 2; transform: translateX(-50%); }
 @media (max-width: 860px) {
@@ -299,22 +297,23 @@ p { margin: 0; }
 }
 @media (max-width: 480px) { .arc img[style*="--i:-2"], .arc img[style*="--i:2"] { display: none; } }
 
-/* 3. Players – floating cards */
-.players { overflow: hidden; padding-bottom: 40px; }
-.players__stage { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 24px 40px; }
-.players__copy { grid-column: 1 / -1; order: 2; text-align: center; display: grid; justify-items: center; gap: 18px; padding: 40px 0; }
-.players__copy .h2 { font-size: clamp(48px, 8vw, 104px); }
-.pcard { margin: 0; position: relative; justify-self: start; width: min(300px, 100%); padding: 10px; border-radius: var(--r); background: var(--ink-3); transform: translate(0, var(--y)) rotate(var(--r)); }
-.pcard:nth-of-type(2), .pcard:nth-of-type(4) { justify-self: end; }
-.pcard:nth-of-type(1), .pcard:nth-of-type(2) { order: 1; }
-.pcard:nth-of-type(3), .pcard:nth-of-type(4) { order: 3; }
-.pcard img { width: 100%; aspect-ratio: 4/4.4; object-fit: cover; object-position: top; border-radius: 14px; background: #2a2e38; }
+/* 3. Players – sticky heading, cards scroll over it (see ANIMATION section) */
+.players { position: relative; }
+.players__sticky { position: sticky; top: 0; height: 100vh; height: 100svh; display: grid; place-items: center; padding: 0 var(--gutter); z-index: 0; }
+.players__copy { text-align: center; display: grid; justify-items: center; gap: 18px; max-width: 900px; }
+.players__copy .h2 { font-size: clamp(52px, 9vw, 120px); }
+.players__cards { position: relative; z-index: 1; margin-top: -30vh; padding-bottom: 25vh; display: grid; grid-template-columns: 1fr 1fr; row-gap: 22vh; }
+.pcard { margin: 0; width: min(300px, 100%); padding: 10px; border-radius: var(--r); background: rgba(29,33,43,.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid var(--line); rotate: var(--r, 0deg); translate: 0 var(--py, 0); }
+.pcard:nth-child(odd) { justify-self: start; --r: -3deg; }
+.pcard:nth-child(even) { justify-self: end; margin-top: 26vh; --r: 3deg; }
+.pcard img { width: 100%; aspect-ratio: 4/4.4; object-fit: cover; object-position: top; border-radius: 14px; background: #2a2e38; transition: transform .5s cubic-bezier(.25,.46,.45,.94); }
+.pcard { overflow: hidden; }
 .pcard figcaption { margin: -54px 10px 0; position: relative; background: var(--white); color: var(--ink); border-radius: var(--r-sm); padding: 14px 16px; display: grid; }
-.pcard strong { font-size: 20px; font-weight: 600; }
+.pcard strong { font-size: 20px; font-weight: 600; transition: color .3s; }
 .pcard span { color: var(--muted-dark); font-size: 15px; }
-.pcard.reveal { transform: translate(0, calc(var(--y) + 30px)) rotate(var(--r)); }
-.pcard.reveal.is-in { transform: translate(0, var(--y)) rotate(var(--r)); }
-@media (max-width: 640px) { .players__stage { grid-template-columns: 1fr 1fr; gap: 16px; } .pcard { --y: 0 !important; } .pcard strong { font-size: 16px; } .pcard figcaption { margin-top: -44px; padding: 10px 12px; } }
+.pcard:hover img { transform: scale(1.06); }
+.pcard:hover strong { color: var(--maroon); }
+@media (max-width: 640px) { .players__cards { row-gap: 16vh; } .pcard { width: 62vw; } .pcard strong { font-size: 16px; } .pcard figcaption { margin-top: -44px; padding: 10px 12px; } }
 
 /* 4. Facilities – "featured match" card */
 .match { position: relative; isolation: isolate; overflow: hidden; border-radius: var(--r-lg); padding: 90px clamp(16px, 4vw, 56px) 56px; }
@@ -387,11 +386,11 @@ p { margin: 0; }
 .logo-pills a:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.3); }
 .logo-pills img { max-height: 40px; max-width: 130px; width: auto; }
 .partners__note { color: var(--muted); margin-top: 32px; }
-.tilt { position: absolute; width: 150px; aspect-ratio: 1; object-fit: cover; border-radius: var(--r); border: 4px solid var(--ink-3); }
-.tilt--1 { left: 0; top: 0; transform: rotate(-12deg); }
-.tilt--2 { left: 30px; bottom: 0; transform: rotate(8deg); }
-.tilt--3 { right: 0; top: 0; transform: rotate(10deg); }
-.tilt--4 { right: 30px; bottom: 0; transform: rotate(-8deg); }
+.tilt { translate: 0 var(--py, 0); position: absolute; width: 150px; aspect-ratio: 1; object-fit: cover; border-radius: var(--r); border: 4px solid var(--ink-3); }
+.tilt--1 { left: 0; top: 0; rotate: var(--pr, -12deg); }
+.tilt--2 { left: 30px; bottom: 0; rotate: var(--pr, 8deg); }
+.tilt--3 { right: 0; top: 0; rotate: var(--pr, 10deg); }
+.tilt--4 { right: 30px; bottom: 0; rotate: var(--pr, -8deg); }
 @media (max-width: 1180px) { .tilt { display: none; } }
 @media (max-width: 480px) { .logo-pills a { width: calc(50vw - 30px); height: 72px; } }
 
@@ -454,3 +453,86 @@ p { margin: 0; }
 .newsletter input:focus { outline: none; }
 .newsletter:focus-within { border-color: var(--gold); }
 .footer__top { grid-template-columns: 1.4fr repeat(3, 1fr); }
+
+
+/* =====================================================================
+   ANIMATION (mirrors the Goal template's Webflow interactions)
+   Everything is skipped when the visitor prefers reduced motion.
+   ===================================================================== */
+:root { --ease: cubic-bezier(.25,.46,.45,.94); }
+
+/* Slide in from bottom – staggered with --d */
+.motion .reveal { opacity: 0; translate: 0 100px; transition: opacity 1s var(--ease) var(--d, 0ms), translate 1s var(--ease) var(--d, 0ms); }
+.motion .reveal.is-in { opacity: 1; translate: 0 0; }
+
+/* Hero: load-in sequence + slow zoom (Goal uses a background video) */
+@keyframes heroUp { from { opacity: 0; translate: 0 100px; } to { opacity: 1; translate: 0 0; } }
+@keyframes heroZoom { from { scale: 1.18; } to { scale: 1.02; } }
+.motion .hero .container > * { opacity: 0; animation: heroUp 1.1s var(--ease) forwards; }
+.motion .hero .container > :nth-child(1) { animation-delay: .15s; }
+.motion .hero .container > :nth-child(2) { animation-delay: .3s; }
+.motion .hero .container > :nth-child(3) { animation-delay: .45s; }
+.motion .hero .container > :nth-child(4) { animation-delay: .6s; }
+.motion .hero__bg { animation: heroZoom 9s var(--ease) forwards; }
+.motion .notch { opacity: 0; animation: heroUp 1s var(--ease) .9s forwards; }
+
+/* Odometer counters */
+.odo { display: inline-flex; line-height: 1; }
+.odo__col { display: inline-block; height: 1em; overflow: hidden; }
+.odo__strip { display: flex; flex-direction: column; transition: transform 1.6s cubic-bezier(.2,.8,.2,1) var(--d, 0ms); }
+.odo__strip > span { display: block; height: 1em; line-height: 1; }
+.odo.is-in .odo__strip { transform: translateY(calc(var(--n) * -1em)); }
+.stat strong.odo { display: flex; justify-content: center; }
+
+/* Buttons: colour fill rises from the bottom on hover (Goal's button hover) */
+.btn { position: relative; isolation: isolate; overflow: hidden; }
+.btn::before { content: ""; position: absolute; inset: auto 0 0 0; height: 0; z-index: -1; border-radius: inherit; transition: height .4s var(--ease); }
+.btn:hover::before { height: 100%; }
+.btn--primary::before { background: var(--white); }
+.btn--primary:hover { background: var(--maroon); color: var(--ink); }
+.btn--light::before { background: var(--maroon); }
+.btn--light:hover { color: var(--white); }
+.btn--ghost::before { background: var(--white); }
+.btn--ghost:hover { background: transparent; color: var(--ink); }
+.btn--ghost-dark::before { background: var(--ink); }
+.btn--ghost-dark:hover { background: transparent; color: var(--white); }
+.btn { transition: color .4s var(--ease), border-color .4s, transform .2s; }
+
+/* Card hovers */
+.ev-card__media { overflow: hidden; }
+.ev-card__media img { transition: transform .6s var(--ease); }
+.ev-card { transition: border-color .3s, background .3s; }
+.ev-card:hover { border-color: rgba(255,255,255,.25); background: var(--ink-3); }
+.ev-card:hover .ev-card__media img { transform: scale(1.06); }
+.news__body { transition: transform .4s var(--ease); }
+.news:hover .news__body { transform: translateY(-6px); }
+.match__side { transition: transform .4s var(--ease), border-color .3s; }
+.match__side img { transition: transform .6s var(--ease); }
+.match__side:hover { transform: translateY(-6px); border-color: rgba(255,255,255,.3); }
+.match__side { overflow: hidden; }
+.pass { transition: transform .4s var(--ease), border-color .3s; }
+.pass:hover { transform: translateY(-6px); border-color: rgba(255,255,255,.25); }
+.logo-pills a img { transition: transform .3s var(--ease); }
+.logo-pills a:hover img { transform: scale(1.08); }
+.gallery img { transition: transform .6s var(--ease), filter .4s; }
+.gallery li { overflow: hidden; border-radius: var(--r); }
+.gallery li:hover img { transform: scale(1.04); }
+
+/* Honours slider: fade + rise on change */
+@keyframes slideIn { from { opacity: 0; translate: 24px 0; } to { opacity: 1; translate: 0 0; } }
+.motion .slide.is-active img { animation: slideIn .7s var(--ease); }
+.motion .slide.is-active blockquote { animation: slideIn .7s var(--ease) .1s both; }
+
+/* FAQ icon spin */
+.faq summary::after { transition: transform .3s var(--ease), background .3s; }
+.faq details.is-open summary::after { transform: rotate(45deg); }
+
+/* Gallery drag cursor (Goal's play-button that follows the mouse) */
+.gallery-wrap { position: relative; }
+.drag-cursor { position: absolute; left: 0; top: 0; z-index: 3; width: 96px; height: 96px; margin: -48px 0 0 -48px; border-radius: 50%; display: grid; place-items: center; background: var(--white); color: var(--ink); font-weight: 700; font-size: 15px; pointer-events: none; opacity: 0; scale: .4; transition: opacity .25s, scale .3s var(--ease); }
+.gallery-wrap.cursor-on .drag-cursor { opacity: 1; scale: 1; }
+.gallery-wrap.cursor-on .gallery { cursor: none; }
+.gallery.is-drag { scroll-snap-type: none; }
+.gallery.is-drag img { scale: .98; }
+
+/* Arc photos & tilt photos are driven by --py / --pr from JS */
