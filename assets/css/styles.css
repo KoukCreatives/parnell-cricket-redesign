@@ -40,6 +40,7 @@ body {
 body.nav-open { overflow: hidden; }
 img { max-width: 100%; display: block; }
 [hidden] { display: none !important; }
+main { overflow-x: clip; }
 a { color: inherit; }
 h1, h2, h3, h4 { margin: 0; line-height: 1.05; }
 p { margin: 0; }
@@ -103,9 +104,10 @@ p { margin: 0; }
 .hero--home .hero__bg { left: auto; right: 0; width: 56%; object-position: 22% 30%; }
 .hero--home::before { background: linear-gradient(90deg, var(--ink) 0%, var(--ink) 44%, rgba(11,13,19,.5) 52%, rgba(11,13,19,0) 64%), linear-gradient(0deg, rgba(11,13,19,.85) 0%, transparent 30%); }
 @media (max-width: 860px) {
-  .hero--home { align-items: flex-end; min-height: 760px; }
-  .hero--home .hero__bg { width: 100%; height: 62%; object-position: 30% 20%; }
-  .hero--home::before { background: linear-gradient(0deg, var(--ink) 0%, var(--ink) 42%, rgba(11,13,19,.4) 55%, rgba(11,13,19,0) 70%), linear-gradient(180deg, rgba(11,13,19,.7) 0%, transparent 18%); }
+  .hero--home { display: block; min-height: 0; padding: 380px 0 110px; }
+  .hero--home .hero__bg { width: 100%; height: 440px; object-position: 32% 25%; }
+  .hero--home::before { background: linear-gradient(0deg, var(--ink) 0%, var(--ink) calc(100% - 440px), rgba(11,13,19,.6) calc(100% - 360px), rgba(11,13,19,0) calc(100% - 250px)), linear-gradient(180deg, rgba(11,13,19,.75) 0%, transparent 110px); }
+  .hero--home h1 { margin-top: 18px; }
 }
 .hero h1 { font-size: clamp(56px, 9.5vw, 128px); margin: 24px 0; max-width: 11ch; }
 .hero h1 em { font-style: normal; color: var(--gold); }
@@ -321,7 +323,7 @@ p { margin: 0; }
 .pcard span { color: var(--muted-dark); font-size: 15px; }
 .pcard:hover img { transform: scale(1.06); }
 .pcard:hover strong { color: var(--maroon); }
-@media (max-width: 640px) { .players__cards { row-gap: 16vh; } .pcard { width: 62vw; } .pcard strong { font-size: 16px; } .pcard figcaption { margin-top: -44px; padding: 10px 12px; } }
+@media (max-width: 640px) { .players__cards { grid-template-columns: 1fr; row-gap: 10vh; } .pcard { width: 66vw; } .pcard:nth-child(even) { margin-top: 0; } .pcard strong { font-size: 16px; } .pcard figcaption { margin-top: -44px; padding: 10px 12px; } }
 
 /* 4. Facilities – "featured match" card */
 .match { position: relative; isolation: isolate; overflow: hidden; border-radius: var(--r-lg); padding: 90px clamp(16px, 4vw, 56px) 56px; }
