@@ -1232,3 +1232,20 @@ a.card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.25);
   .hero--home .hero__lead { font-size: clamp(16px, min(1.7vw, 2.6vh), 20px); }
   .hero--home .hero__actions { margin-top: clamp(18px, 3.6vh, 36px); }
 }
+
+/* =====================================================================
+   NAV BORDER BEAM – a soft light travels slowly around the menu's edge
+   (as on nzipi.org.nz). Desktop only; off for reduced motion.
+   ===================================================================== */
+@property --beam { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@media (min-width: 1081px) {
+  .header .nav { position: relative; isolation: isolate; }
+  .header.is-scrolled .nav { border-color: var(--line); }
+  .header .nav::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
+    background: conic-gradient(from var(--beam), transparent 0deg, transparent 280deg, rgba(212,171,85,.35) 318deg, rgba(255,240,205,.95) 342deg, rgba(212,171,85,.35) 352deg, transparent 360deg);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    animation: navBeam 7s linear infinite; }
+}
+@keyframes navBeam { to { --beam: 360deg; } }
+@media (prefers-reduced-motion: reduce) { .header .nav::after { animation: none; opacity: 0; } }
