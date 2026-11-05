@@ -108,11 +108,6 @@
         <span class="sponsor__go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
       </a></li>`;
   }
-  const mq = $("[data-sponsor-marquee]");
-  if (mq && S.sponsors) {
-    const one = S.sponsors.map(s => `<span class="marquee__item">${s.logo ? `<img src="${esc(s.logo)}" alt="">` : `<span class="wordmark">${esc(s.name)}</span>`}</span><span class="marquee__dot"></span>`).join("");
-    mq.innerHTML = one + one;
-  }
 
   /* ---------- Mobile nav ---------- */
   const toggle = $(".nav-toggle");
