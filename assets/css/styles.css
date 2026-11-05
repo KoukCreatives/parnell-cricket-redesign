@@ -1353,3 +1353,13 @@ a.card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.25);
 .coach { display: flex; flex-direction: column; }
 .coach__links { margin-top: auto; }
 .coach__top + * { margin-top: 2px; }
+
+/* Split sections – heading sits centred against its content (no dead space under short headings) */
+.split { align-items: center; }
+.split .h2, .split > div:first-child .h2 { position: static; }
+.split > div:first-child > .h2 + .lead { margin-top: 18px; }
+.split--stack { grid-template-columns: minmax(0, 1fr); gap: 40px; text-align: center; }
+.split--stack .lead { margin-inline: auto; }
+.steps--4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; text-align: left; }
+@media (max-width: 1080px) { .steps--4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+@media (max-width: 600px) { .steps--4 { grid-template-columns: minmax(0, 1fr) !important; text-align: center; } }
