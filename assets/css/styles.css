@@ -695,3 +695,20 @@ p { margin: 0; }
   .photo-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 180px; gap: 10px; }
 }
 .photo-grid li:nth-child(6) img, .photo-grid li:nth-child(7) img { object-position: center 25%; }
+
+/* What's on – past events */
+.ev-card__past { position: absolute; right: 16px; top: 16px; padding: 6px 12px; border-radius: var(--pill); background: rgba(11,13,19,.75); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); font-size: 13px; font-weight: 600; }
+.ev-card.is-past .ev-card__badge { background: var(--ink-3); }
+.ev-card__media img { object-position: top; }
+
+/* Partners panel – same treatment as the light "About" panel */
+.partners { margin: 0; border-radius: var(--r-lg); padding: 110px 0; }
+.partners .center-head .eyebrow { margin-bottom: 4px; }
+
+/* Brand photos – uniform size */
+.brand__photos { align-items: stretch; margin-top: 8px; }
+.brand__photos img, .brand__photos .b1, .brand__photos .b2, .brand__photos .b3, .brand__photos .b4 { aspect-ratio: 4 / 5; height: auto; }
+
+/* Footer social icons – white */
+.social a { background: var(--white); color: var(--ink); border-color: var(--white); transition: background .3s, color .3s, border-color .3s; }
+.social a:hover { background: var(--maroon); color: var(--white); border-color: var(--maroon); }
