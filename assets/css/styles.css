@@ -1109,3 +1109,6 @@ a.card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.25);
   .kv { grid-template-columns: 1fr; gap: 2px; } .kv dd { margin-bottom: 10px; }
   .lib-list .m { white-space: normal; }
 }
+.history__intro .eyebrow, .block__head .eyebrow { justify-self: start; }
+.history--static .history__intro .eyebrow { justify-self: center; }
+@media (max-width: 600px) { .block__head .eyebrow { justify-self: center; } }
