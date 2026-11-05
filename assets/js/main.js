@@ -22,9 +22,8 @@
   }
 
   /* ---------- Events: Upcoming / Recent tabs; old events disappear ---------- */
-  const evUp = $("[data-events-upcoming]");
-  const evPast = $("[data-events-recent]");
-  if ((evUp || evPast) && S.events) {
+  const evAll = $("[data-events-all]");
+  if (evAll && S.events) {
     const today = todayNZ();
     const recentFrom = iso(new Date(toDate(today) - (S.recentDays || 45) * 864e5));
     const all = S.events.map(e => {
@@ -44,6 +43,7 @@
       <article class="ev-card${past ? " is-past" : ""}">
         <div class="ev-card__media">
           <img src="${esc(e.image)}" alt="${esc(e.alt || "")}" loading="lazy">
+          ${past ? `<span class="ev-card__past">Past event</span>` : ""}
           <span class="ev-card__badge">
             <strong>${fmt(e.show, { day: "numeric" })}</strong>${fmt(e.show, { month: "short" })}
           </span>
@@ -53,16 +53,15 @@
           <p class="ev-card__meta">
             <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
               <time datetime="${e.show}">${fmt(e.show, { weekday: "short", day: "numeric", month: "long" })}</time>${e.repeatWeekly && !past ? " · weekly" : ""}</span>
-            ${e.place ? `<span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>${esc(e.place)}</span>` : ""}
+            ${e.place ? `<span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>${esc(e.place)}</span>` : ""}${e.time ? `<span>${esc(e.time)}</span>` : ""}
           </p>
           <p>${esc(e.summary)}</p>
           <a class="ev-card__link" href="${esc(e.href)}">${past ? "See what happened" : "Full details"}<span class="sr-only"> – ${esc(e.title)}</span> <span aria-hidden="true">→</span></a>
         </div>
       </article>`;
-    const empty = msg => `<p class="ev-empty">${msg}</p>`;
-    if (evUp) evUp.innerHTML = upcoming.length ? upcoming.slice(0, 6).map(e => card(e, false)).join("") : empty("Nothing on right now – check back soon.");
-    if (evPast) evPast.innerHTML = recent.length ? recent.slice(0, 6).map(e => card(e, true)).join("") : empty("No recent events.");
-    if (!upcoming.length && !recent.length) evUp?.closest("section")?.setAttribute("hidden", "");
+    const list = upcoming.map(e => card(e, false)).concat(recent.map(e => card(e, true))).slice(0, 6);
+    if (list.length) evAll.innerHTML = list.join("");
+    else evAll.closest("section")?.setAttribute("hidden", "");
   }
 
   /* ---------- News: stale posts drop off the homepage ---------- */

@@ -13,8 +13,8 @@ window.SITE = {
     cta: { text: "Join the club", href: "https://www.parnellcricket.co.nz/register" }
   },
 
-  /* Events: "Upcoming" until they finish, then "Recent" for `recentDays`, then gone. */
-  recentDays: 45,
+  /* Events: upcoming first, then past events from the last `recentDays` (marked "Past"), then gone. */
+  recentDays: 120,
   events: [
     {
       title: "Thirdman Thursdays",
@@ -28,14 +28,23 @@ window.SITE = {
       href: "https://www.parnellcricket.co.nz/event/thirdman-thursdays"
     },
     {
-      title: "October Junior Holiday Programme",
+      title: "Parnell Cricket Club Quiz Night",
+      date: "2026-10-29",
+      time: "6.30pm",
+      place: "Parnell Cricket Clubhouse, Shore Rd",
+      summary: "A fundraising night of fun, quiz and friendship. Pay at the door or reserve a table.",
+      image: IMG + "650e4c20299a53936d88c704/6abd97aa05647e930f37fff0_83ec5fd6-3f94-48ea-aa33-7932417b75d5.png",
+      alt: "Parnell Cricket Club quiz night poster",
+      href: "https://www.parnellcricket.co.nz/event/parnell-cricket-quiz-night"
+    },
+    {
+      title: "October School Holiday Programme",
       date: "2026-10-05",
-      end: "2026-10-09",
-      place: "Parnell Cricket Club",
-      summary: "Pro-coach led holiday programme for junior players.",
-      image: IMG + "650e4c20299a53936d88c704/66aa9f5048fcfac4d5a4a060_231216PT55.jpg",
-      alt: "Junior batter in a maroon helmet lining up a shot",
-      href: "https://www.parnellcricket.co.nz/playing-opportunity/junior-school-holiday-programme"
+      place: "Parnell Cricket Club, Shore Road",
+      summary: "Our October 2026 school holiday cricket programme for junior players.",
+      image: IMG + "650e4c20299a53936d88c704/6ab30c5cf3b6a6b80dbb429a_parnell-cricket-october-2026-poster%20(1)_Page_1.png",
+      alt: "October 2026 school holiday programme poster",
+      href: "https://www.parnellcricket.co.nz/event/school-holiday-programme"
     }
   ],
 
