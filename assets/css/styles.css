@@ -22,7 +22,7 @@
   --r: 20px;
   --r-lg: 32px;
   --pill: 999px;
-  --wrap: 1240px;
+  --wrap: 1880px;
   --gutter: clamp(16px, 4vw, 40px);
 }
 
@@ -314,7 +314,7 @@ p { margin: 0; }
 .players__copy { text-align: center; display: grid; justify-items: center; gap: 18px; max-width: 900px; }
 .players__copy .h2 { font-size: clamp(52px, 9vw, 120px); }
 .players__cards { position: relative; z-index: 1; margin-top: -30vh; padding-bottom: 25vh; display: grid; grid-template-columns: 1fr 1fr; row-gap: 22vh; }
-.pcard { margin: 0; width: min(300px, 100%); padding: 10px; border-radius: var(--r); background: rgba(29,33,43,.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid var(--line); rotate: var(--r, 0deg); translate: 0 var(--py, 0); }
+.pcard { margin: 0; align-self: start; height: max-content; width: min(300px, 100%); padding: 10px; border-radius: var(--r); background: rgba(29,33,43,.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid var(--line); rotate: var(--r, 0deg); translate: 0 var(--py, 0); }
 .pcard:nth-child(odd) { justify-self: start; --r: -3deg; }
 .pcard:nth-child(even) { justify-self: end; margin-top: 26vh; --r: 3deg; }
 .pcard img { width: 100%; aspect-ratio: 4/4.4; object-fit: cover; object-position: top; border-radius: 14px; background: #2a2e38; transition: transform .5s cubic-bezier(.25,.46,.45,.94); }
