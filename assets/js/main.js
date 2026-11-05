@@ -40,14 +40,14 @@
     const recent = all.filter(e => e.last < today && e.last >= recentFrom).sort((a, b) => b.show.localeCompare(a.show));
 
     const card = (e, past) => `
-      <article class="ev-card${past ? " is-past" : ""}">
+      <article class="ev-card${past || e.cancelled ? " is-past" : ""}">
         <div class="ev-card__media">
           <img src="${esc(e.image)}" alt="${esc(e.alt || "")}" loading="lazy">
         </div>
         <div class="ev-card__body">
           <div class="ev-card__top">
             <span class="ev-card__badge"><strong>${fmt(e.show, { day: "numeric" })}</strong>${fmt(e.show, { month: "short" })}</span>
-            ${past ? `<span class="ev-card__past">Past event</span>` : `<span class="ev-card__soon">Upcoming</span>`}
+            ${e.cancelled ? `<span class="ev-card__past ev-card__cancelled">Cancelled</span>` : past ? `<span class="ev-card__past">Past event</span>` : `<span class="ev-card__soon">Upcoming</span>`}
           </div>
           <h3>${esc(e.title)}</h3>
           <p class="ev-card__meta">
@@ -116,6 +116,10 @@
       const W = bmp.width, H = bmp.height, c = document.createElement("canvas"); c.width = W; c.height = H;
       const x = c.getContext("2d"); x.drawImage(bmp, 0, 0);
       const p = x.getImageData(0, 0, W, H).data;
+      if (p[3] < 10) { // transparent logo: paint every visible pixel white, keep its alpha
+        const im = x.getImageData(0, 0, W, H); for (let i = 0; i < im.data.length; i += 4) { im.data[i] = im.data[i + 1] = im.data[i + 2] = 255; }
+        x.putImageData(im, 0, 0); img.src = c.toDataURL("image/png"); img.hidden = false; img.nextElementSibling?.remove(); return;
+      }
       const isBg = i => p[i + 2] > p[i] + 40 && p[i + 2] > p[i + 1] + 20;
       let x0 = W, y0 = H, x1 = 0, y1 = 0, r = 0, g = 0, b = 0, n = 0;
       for (let y = 0; y < H; y++) for (let X = 0; X < W; X++) { const i = (y * W + X) * 4; if (isBg(i)) { x0 = Math.min(x0, X); x1 = Math.max(x1, X); y0 = Math.min(y0, y); y1 = Math.max(y1, y); r += p[i]; g += p[i + 1]; b += p[i + 2]; n++; } }

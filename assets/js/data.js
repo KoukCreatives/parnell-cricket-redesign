@@ -23,7 +23,8 @@ window.SITE = {
       date: "2026-10-15",
       end: "2027-03-25",
       place: "Shore Road Clubrooms",
-      summary: "Our weekly social night through the season. Out on the boundary? Nope – the fun is at the club!",
+      summary: "A fun-filled Thursday night social event with quizzes, raffles and a good time. Out on the boundary? Nope – the fun is at the club!",
+      cancelled: true,
       image: IMG + "650e4c20299a53936d88c704/6abd9e7c6994b1df64f30931_thirdman-thursdays-poster.png",
       alt: "Thirdman Thursdays poster",
       href: "https://www.parnellcricket.co.nz/event/thirdman-thursdays"
@@ -33,7 +34,8 @@ window.SITE = {
       date: "2026-10-22",
       time: "6.30pm",
       place: "Parnell Cricket Clubhouse, Shore Rd",
-      summary: "A fundraising night of fun, quiz and friendship. Pay at the door or reserve a table.",
+      summary: "A fundraising night of fun, quiz and friendship.",
+      cancelled: true,
       image: IMG + "650e4c20299a53936d88c704/6abd97aa05647e930f37fff0_83ec5fd6-3f94-48ea-aa33-7932417b75d5.png",
       alt: "Parnell Cricket Club quiz night poster",
       href: "https://www.parnellcricket.co.nz/event/parnell-cricket-quiz-night"
@@ -53,6 +55,24 @@ window.SITE = {
      `newsFreshDays` drop off the homepage on their own (they stay in the News archive). */
   newsFreshDays: 365,
   news: [
+    {
+      title: "PCC Girls in Sri Lanka",
+      date: "2025-07-21",
+      tag: "Women's cricket",
+      summary: "Augustine Malcolm and Luna Burns toured Sri Lanka with a North Harbour/Auckland Select XI – and Augie became the first woman on these tours to score a 50, against Sri Lanka Women A in Colombo.",
+      image: IMG + "650e4c20299a53936d88c704/687d6faa19bc251ae5a07d81_WhatsApp%20Image%202025-07-20%20at%2022.06.03_bb8c804b.jpg",
+      alt: "",
+      href: "https://www.parnellcricket.co.nz/blog-posts/pcc-girls-in-sri-lanka"
+    },
+    {
+      title: "Club Annual Dinner 2024",
+      date: "2024-07-22",
+      tag: "Club news",
+      summary: "Held at the Remuera Golf Course. The M J Simpson Cup for player of the year went to Yaz Kareem, alongside secondary school prizes and farewells.",
+      image: IMG + "650e4c20299a53936d88c704/669dc30a0a1d7d1ef92457c7_435010818_1144442743178687_8416188646970575854_n.jpg",
+      alt: "",
+      href: "https://www.parnellcricket.co.nz/blog-posts/club-annual-dinner-2024"
+    },
     {
       title: "PCC Senior Women in India",
       date: "2026-04-24",
@@ -155,6 +175,7 @@ window.SITE = {
     { name: "TransBuild", href: "https://transbuild.co.nz/", logo: IMG + "650e4c20299a53936d88c704/650edbff5608c727a78ba5a5_transbuild-white_500.png" },
     // General Capital only supplied a colour logo; `knockout` turns it into a white-on-transparent
     // version in the browser so it matches the others. Swap for an official mono logo when supplied.
-    { name: "General Capital", href: "https://gencap.co.nz/", logo: "", knockout: IMG + "650e4c20299a53936d88c704/69aa9377270d5dd932a05404_General%20Capital%20(1).jpg" }
+    { name: "General Capital", href: "https://gencap.co.nz/", logo: "", knockout: IMG + "650e4c20299a53936d88c704/69aa9377270d5dd932a05404_General%20Capital%20(1).jpg" },
+    { name: "UBC", href: "https://ubc.nz/", logo: "", knockout: IMG + "650e4c20299a53936d88c704/650edb826cf62f0b693f5c52_ubc-colour_500.png" }
   ]
 };
