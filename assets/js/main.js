@@ -262,6 +262,32 @@
     location.href = `mailto:steve@parnellcricket.co.nz?subject=${encodeURIComponent("Newsletter sign-up")}&body=${encodeURIComponent("Please add " + email + " to the club newsletter.")}`;
   }));
 
+  /* ---------- Spline 3D scenes (trophy + crest), loaded only when near the screen ---------- */
+  const splines = [...document.querySelectorAll("[data-spline]")];
+  if (splines.length && !reduce && "IntersectionObserver" in window) {
+    const SRC = "https://unpkg.com/@splinetool/viewer@2.0.80/build/spline-viewer.js";
+    let loading;
+    const loadLib = () => loading || (loading = new Promise((res, rej) => {
+      const s = document.createElement("script"); s.type = "module"; s.src = SRC; s.onload = res; s.onerror = rej; document.head.appendChild(s);
+    }));
+    const io2 = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      io2.unobserve(e.target);
+      const box = e.target;
+      loadLib().then(() => {
+        const v = document.createElement("spline-viewer");
+        v.setAttribute("url", box.dataset.spline);
+        v.setAttribute("loading-anim-type", "none");
+        v.setAttribute("aria-hidden", "true");
+        v.addEventListener("load-complete", () => box.classList.add("is-live"));
+        box.appendChild(v);
+        // Safety net: if the scene never reports in, keep the photo.
+        setTimeout(() => { if (!box.classList.contains("is-live") && v.shadowRoot && v.shadowRoot.querySelector("canvas")) box.classList.add("is-live"); }, 6000);
+      }).catch(() => {});
+    }), { rootMargin: "300px 0px" });
+    splines.forEach(s => io2.observe(s));
+  }
+
   /* ---------- Footer year ---------- */
   document.querySelectorAll("[data-year]").forEach(el => (el.textContent = new Date().getFullYear()));
 })();
