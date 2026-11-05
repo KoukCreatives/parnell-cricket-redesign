@@ -1477,3 +1477,8 @@ a.card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.25);
 .lib-raffle[open] summary .t::after { content: " –"; }
 .lib-raffle .lib-list { margin: 0 0 12px 12px; }
 .lib-raffle .lib-row { padding: 10px 4px; }
+.sp-tier { padding-top: 0; margin-top: 72px; }
+.sp-tier { scroll-margin-top: 110px; }
+/* consecutive light panels read as one continuous panel */
+.block--light:has(+ .block--light) { border-bottom-left-radius: 0; border-bottom-right-radius: 0; padding-bottom: 36px; }
+.block--light + .block--light { border-top-left-radius: 0; border-top-right-radius: 0; padding-top: 36px; }
