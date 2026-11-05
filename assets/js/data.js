@@ -63,7 +63,7 @@ window.SITE = {
       href: "https://www.parnellcricket.co.nz/blog-posts/pcc-senior-women-in-india-april-2025"
     },
     {
-      title: "Ana Wijffels named in Netherlands U19 World Cup squad",
+      title: "Ana Wijffels Named in Netherlands U19 World Cup Squad",
       date: "2024-07-17",
       tag: "Player spotlight",
       summary: "Congratulations to Ana on her selection for the Netherlands U19 squad.",
@@ -72,7 +72,7 @@ window.SITE = {
       href: "https://www.parnellcricket.co.nz/blog-posts/congratulations-for-ana-wijffels-selected-in-netherlands-u-19-world-cup-squad"
     },
     {
-      title: "Ruben Clinton debuts for MI New York",
+      title: "Ruben Clinton Debuts for MI New York",
       date: "2024-07-07",
       tag: "Player spotlight",
       summary: "Former Parnell player Ruben Clinton makes his Major League Cricket debut.",
