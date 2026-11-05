@@ -85,12 +85,12 @@
 
           <div class="arc reveal" aria-hidden="true">
             <img class="arc__c" src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/669e6c9b1840f1d98f1cb58e_a298b8f7-3120-4589-b573-bc4a958f2286_wo.jpeg" alt="">
-            <img style="--i:-3" src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/66b01f015d76792891766b11_231216PT69.jpg" alt="">
-            <img style="--i:-2" src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/65c37aa5050cf7fb238b8044_425459825_933584148130849_3117413571879455501_n.jpg" alt="">
-            <img style="--i:-1" src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/66b01f01a7aa3c41724200e7_231216PT72.jpg" alt="">
-            <img style="--i:1" src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/6671a613ff3bd004e9c53e70_421353417_1097620224527606_5394801249391946858_n.jpg" alt="">
-            <img style="--i:2" src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/66b01ee91127a4c4b55051a2_240211PT29.jpg" alt="">
-            <img style="--i:3" src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/669db4dc5499852bf54660c6_449974994_1200527340903560_1197500687275611312_n.jpg" alt="">
+            <img style="--i:-3" data-parallax="-0.12" src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/66b01f015d76792891766b11_231216PT69.jpg" alt="">
+            <img style="--i:-2" data-parallax="-0.06" src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/65c37aa5050cf7fb238b8044_425459825_933584148130849_3117413571879455501_n.jpg" alt="">
+            <img style="--i:-1" data-parallax="-0.1" src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/66b01f01a7aa3c41724200e7_231216PT72.jpg" alt="">
+            <img style="--i:1" data-parallax="-0.08" src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/6671a613ff3bd004e9c53e70_421353417_1097620224527606_5394801249391946858_n.jpg" alt="">
+            <img style="--i:2" data-parallax="-0.05" src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/66b01ee91127a4c4b55051a2_240211PT29.jpg" alt="">
+            <img style="--i:3" data-parallax="-0.11" src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/669db4dc5499852bf54660c6_449974994_1200527340903560_1197500687275611312_n.jpg" alt="">
           </div>
 
           <div class="stats">
@@ -103,27 +103,29 @@
         </div>
       </section>
 
-      <!-- 3. PLAYERS: floating cards around the heading (Goal "Matches & fixtures") -->
-      <section class="section players" aria-labelledby="players-title">
-        <div class="container players__stage">
-          <figure class="pcard reveal" style="--x:4%;--y:0;--r:-4deg">
-            <img src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/66b05880e727325e37707bfd_669e69cb6e7143c969f889d7_lockie-ferguson_058.jpg" alt="Lockie Ferguson in his Black Caps shirt" loading="lazy">
-            <figcaption><strong>Lockie Ferguson</strong><span>Black Cap</span></figcaption>
-          </figure>
-          <figure class="pcard reveal" style="--x:72%;--y:40px;--r:4deg">
-            <img src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/66b05893a57ce3587934516f_669e69fd240b831996b0ccd5_mark-chapman_01.jpg" alt="Mark Chapman in his Black Caps shirt" loading="lazy">
-            <figcaption><strong>Mark Chapman</strong><span>Black Cap</span></figcaption>
-          </figure>
+      <!-- 3. PLAYERS: sticky heading, cards scroll over it with a blur (Goal "Matches & fixtures") -->
+      <section class="players" aria-labelledby="players-title">
+        <div class="players__sticky">
           <div class="players__copy">
             <h2 id="players-title" class="display h2">From Parnell to the world</h2>
             <p class="lead">Black Caps, Auckland Aces and Hearts, Northern Brave, Aotearoa Wāhine and international U19 squads – our members play at every level.</p>
             <a class="btn btn--ghost" href="https://www.parnellcricket.co.nz/about/performance">See our achievements</a>
           </div>
-          <figure class="pcard reveal" style="--x:0%;--y:-20px;--r:3deg">
+        </div>
+        <div class="container players__cards">
+          <figure class="pcard" data-parallax="0.05">
+            <img src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/66b05880e727325e37707bfd_669e69cb6e7143c969f889d7_lockie-ferguson_058.jpg" alt="Lockie Ferguson in his Black Caps shirt" loading="lazy">
+            <figcaption><strong>Lockie Ferguson</strong><span>Black Cap</span></figcaption>
+          </figure>
+          <figure class="pcard" data-parallax="-0.08">
+            <img src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/66b05893a57ce3587934516f_669e69fd240b831996b0ccd5_mark-chapman_01.jpg" alt="Mark Chapman in his Black Caps shirt" loading="lazy">
+            <figcaption><strong>Mark Chapman</strong><span>Black Cap</span></figcaption>
+          </figure>
+          <figure class="pcard" data-parallax="0.08">
             <img src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/66b068aa51291b6ece948b6d_olivia.PNG" alt="Olivia Anderson in her batting helmet" loading="lazy">
             <figcaption><strong>Olivia Anderson</strong><span>Auckland Hearts</span></figcaption>
           </figure>
-          <figure class="pcard reveal" style="--x:68%;--y:-60px;--r:-3deg">
+          <figure class="pcard" data-parallax="-0.05">
             <img src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/66b0614822f87b13bdb36914_mollie-drumm2.png" alt="Mollie Drumm in her Aotearoa kit holding a ball" loading="lazy">
             <figcaption><strong>Mollie Drumm</strong><span>Aotearoa Wāhine</span></figcaption>
           </figure>
@@ -265,10 +267,10 @@
       <!-- 8. SPONSORS & PARTNERS -->
       <section class="section partners" aria-labelledby="sponsors-title">
         <div class="container">
-          <img class="tilt tilt--1" src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/65c384b3457bd45873a4b174_411588793_1075659940056968_948840043074067511_n.jpg" alt="" loading="lazy">
-          <img class="tilt tilt--2" src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/6671a5de1f8987ec12bb612b_433462050_1135736190716009_793725981255815890_n.jpg" alt="" loading="lazy">
-          <img class="tilt tilt--3" src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/6671a5dee469b6f9b01a465d_432406872_1128325574790404_5493378989334380110_n.jpg" alt="" loading="lazy">
-          <img class="tilt tilt--4" src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/6671a5de4989651eed2b1ac5_434089434_1135733700716258_913958718811868852_n.jpg" alt="" loading="lazy">
+          <img class="tilt tilt--1" data-parallax="0.15" data-rotate="-12" src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/65c384b3457bd45873a4b174_411588793_1075659940056968_948840043074067511_n.jpg" alt="" loading="lazy">
+          <img class="tilt tilt--2" data-parallax="-0.12" data-rotate="8" src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/6671a5de1f8987ec12bb612b_433462050_1135736190716009_793725981255815890_n.jpg" alt="" loading="lazy">
+          <img class="tilt tilt--3" data-parallax="-0.15" data-rotate="10" src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/6671a5dee469b6f9b01a465d_432406872_1128325574790404_5493378989334380110_n.jpg" alt="" loading="lazy">
+          <img class="tilt tilt--4" data-parallax="0.12" data-rotate="-8" src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/6671a5de4989651eed2b1ac5_434089434_1135733700716258_913958718811868852_n.jpg" alt="" loading="lazy">
           <h2 id="sponsors-title" class="display h2">Sponsors &amp; partners</h2>
           <ul class="logo-pills" data-sponsors></ul>
           <p class="partners__note">A big thank you to our sponsors for making Parnell cricket possible.</p>
@@ -298,7 +300,7 @@
             </div>
             <div class="honours__nav">
               <button type="button" data-prev aria-label="Previous honour">←</button>
-              <span data-slide-count aria-live="polite"></span>
+              <span data-slide-count></span>
               <button type="button" data-next aria-label="Next honour">→</button>
             </div>
           </div>
@@ -325,7 +327,7 @@
             <p class="lead">Wickets, centuries and celebrations from across our grades.</p>
           </div>
         </div>
-        <ul class="gallery" tabindex="0" aria-label="Photo gallery – scroll sideways">
+        <div class="gallery-wrap"><span class="drag-cursor" aria-hidden="true">Drag</span><ul class="gallery" tabindex="0" aria-label="Photo gallery – scroll sideways">
           <li><img src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/66b01f024538b8f010fa86eb_231216PT68.jpg" alt="Batter in a maroon helmet defending at the crease" loading="lazy"></li>
           <li><img src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/6671a613ff3bd004e9c53e70_421353417_1097620224527606_5394801249391946858_n.jpg" alt="Junior player playing a sweep shot" loading="lazy"></li>
           <li><img src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/66b01f01a7aa3c41724200e7_231216PT72.jpg" alt="Three Parnell players hugging after a wicket" loading="lazy"></li>
@@ -333,7 +335,7 @@
           <li><img src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/669db4dc5499852bf54660c6_449974994_1200527340903560_1197500687275611312_n.jpg" alt="Batter in blue playing a big drive" loading="lazy"></li>
           <li><img src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/6671a5dee469b6f9b01a465d_432406872_1128325574790404_5493378989334380110_n.jpg" alt="Parnell girls' team lined up on the field" loading="lazy"></li>
           <li><img src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/66b01f015d76792891766b11_231216PT69.jpg" alt="Batter in a purple helmet at the stumps" loading="lazy"></li>
-        </ul>
+        </ul></div>
       </section>
 
       <!-- 12. FAQ + contacts -->
