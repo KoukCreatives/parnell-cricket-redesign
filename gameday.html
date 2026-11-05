@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Game Day – Parnell Cricket Club</title>
+  <meta name="description" content="Draws, cancellations, season dates, grounds, uniform and scoring for Parnell Cricket Club players.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=40">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- One season message, edited in assets/js/data.js -->
+  <div class="season" data-season role="region" aria-label="Season update"></div>
+
+  <div style="position:relative">
+    <header class="header">
+      <div class="container header__inner">
+        <a class="logo" href="index.html"><img src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/656721f93446116e4db88f15_left-white-text.png" alt="Parnell Cricket Club – home"></a>
+        <nav id="site-nav" class="nav" aria-label="Main">
+          <a href="join.html">Join</a>
+          <a href="play.html">Play</a>
+          <a href="gameday.html" aria-current="page">Game Day</a>
+          <a href="coaching.html">Coaching</a>
+          <a href="club.html">Our Club</a>
+          <a href="news.html">News</a>
+          <a class="btn btn--primary nav__join" href="join.html">Join the club</a>
+        </nav>
+        <a class="btn btn--light header__cta" href="join.html">Join the club</a>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+          <span class="sr-only">Menu</span>
+          <svg class="ic-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg><svg class="ic-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <img class="page-hero__bg" src="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/6671a5de4989651eed2b1ac5_434089434_1135733700716258_913958718811868852_n.jpg" alt="" style="object-position:center 35%">
+        <div class="container">
+          <p class="crumbs"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Game Day</span></p>
+          <h1 class="display">Game Day</h1>
+          <p class="lead">Draws, cancellations, dates, grounds and kit – everything for the weekend in one place.</p>
+        </div>
+      </section>
+      <div class="jump"><nav aria-label="On this page"><a href="#draws">Draws</a><a href="#dates">Season dates</a><a href="#grounds">Grounds</a><a href="#uniform">Uniform</a><a href="#scoring">Scoring</a></nav></div>
+
+      <section class="block" id="draws" aria-labelledby="gd-draws">
+        <div class="container">
+          <div class="block__head"><h2 id="gd-draws" class="display h2">This week's draws &amp; cancellations</h2><p class="lead">Auckland Cricket publishes the most up-to-date draws and cancellations. Check on the morning of play.</p></div>
+          <div class="cards">
+            <a class="card" href="https://www.aucklandcricket.co.nz/club-cricket/fixtures-results"><h3>Draws</h3><p>Fixtures for every grade, on the Auckland Cricket website.</p><span class="card__more">View draws →</span></a>
+            <a class="card" href="https://www.aucklandcricket.co.nz/club-cricket/cancellations-defaults"><h3>Cancellations</h3><p>Weather calls and ground closures, updated on game day.</p><span class="card__more">View cancellations →</span></a>
+            <a class="card" href="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/6ad92fa90c4aeb34e1c41e63_Yrs2-4_Draws_Pre-Christmas_2026.pdf"><h3>Years 2–4 draws</h3><p>Pre-Christmas draw for the softball grades (PDF).</p><span class="card__more">Download PDF →</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="dates" aria-labelledby="gd-dates">
+        <div class="container">
+          <div class="block__head"><h2 id="gd-dates" class="display h2">Junior season 2026/27</h2><p class="lead">Years 1–4, Friday-evening junior girls and U10 boys play on Fridays. U11 and up play on Saturdays.</p></div>
+          <div class="datecards">
+            <div class="datecard"><strong>30–31 Oct</strong><span>Season starts</span></div>
+            <div class="datecard"><strong>18–19 Dec</strong><span>Last games before Christmas</span></div>
+            <div class="datecard"><strong>12–13 Feb</strong><span>Interclub fixtures restart (internal games from 5 Feb, TBC)</span></div>
+            <div class="datecard"><strong>19–20 Mar</strong><span>Final playing day</span></div>
+          </div>
+          <p style="margin-top:20px;color:var(--muted)">Note: the U10 boys grade plays most games on Friday evenings this season.</p>
+        </div>
+      </section>
+
+      <section class="block" id="grounds" aria-labelledby="gd-grounds">
+        <div class="container split">
+          <div><h2 id="gd-grounds" class="display h2">Grounds &amp; conditions</h2></div>
+          <div style="display:grid;gap:16px">
+            <p>Our home is Shore Road Reserve in Remuera, with neighbouring Bloodworth Park and indoor training at the Terry Jarvis Centre. Away grounds include Colin Maiden Park, Cox's Bay Reserve and Orakei Domain.</p>
+            <p>Playing conditions for every grade are set by Auckland Cricket and published on their website.</p>
+            <p><a class="btn btn--ghost" href="https://www.parnellcricket.co.nz/game-day-info/pitch-ground-maps">Ground maps</a> <a class="btn btn--ghost" href="https://www.parnellcricket.co.nz/game-day-info/playing-conditions" style="margin-left:8px">Playing conditions</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="uniform" aria-labelledby="gd-uni">
+        <div class="container split">
+          <div><h2 id="gd-uni" class="display h2">Uniform</h2></div>
+          <div style="display:grid;gap:16px">
+            <p>Parnell playing shirts, pants and caps for every grade are available from Players Sports, our kit partner.</p>
+            <p><a class="btn btn--primary" href="https://www.playerssports.co.nz/products/category/500/parnell-cricket-club">Shop Parnell kit</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="scoring" aria-labelledby="gd-score">
+        <div class="container split">
+          <div><h2 id="gd-score" class="display h2">Scoring &amp; policies</h2></div>
+          <div style="display:grid;gap:16px">
+            <p>All match scoring is on PlayHQ. Team scorers register through PlayHQ like players.</p>
+            <p>Health &amp; safety and club policies live in the <a href="library.html#policies" style="color:var(--gold)">Club Library</a>.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__news">
+        <div>
+          <img src="https://cdn.prod.website-files.com/650e4c1f299a53936d88c6ac/656721f93446116e4db88f15_left-white-text.png" alt="Parnell Cricket Club">
+          <h2 class="footer__news-title">Subscribe to our newsletter</h2>
+        </div>
+        <form class="newsletter" data-newsletter>
+          <label class="sr-only" for="nl-email">Email address</label>
+          <input id="nl-email" type="email" required placeholder="Your email address" autocomplete="email">
+          <button class="btn btn--light" type="submit">Subscribe</button>
+        </form>
+      </div>
+      <div class="footer__top">
+        <div>
+          <p>Shore Road Clubrooms, Tāmaki Makaurau Auckland<br>New Zealand's oldest cricket club, est. 1858</p>
+          <div class="social">
+            <a href="https://www.instagram.com/parnellcricket/" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+            <a href="https://www.facebook.com/ParnellCC/" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8Z"/></svg></a>
+            <a href="https://twitter.com/ParnellCricket" aria-label="X (Twitter)"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.4l-7.4 8.5L23 22h-6.8l-5.3-7-6.1 7H1.4l7.9-9.1L1 2h7l4.8 6.4L18.2 2Z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h2>Play</h2>
+          <ul>
+            <li><a href="join.html">Join the club</a></li>
+            <li><a href="juniors.html">Juniors</a></li>
+            <li><a href="play.html#youth">Youth</a></li>
+            <li><a href="play.html#seniors">Seniors</a></li>
+            <li><a href="coaching.html">Coaching</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Club</h2>
+          <ul>
+            <li><a href="gameday.html">Game Day</a></li>
+            <li><a href="club.html">Our Club</a></li>
+            <li><a href="club.html#facilities">Facilities</a></li>
+            <li><a href="club.html#sponsors">Sponsors</a></li>
+            <li><a href="news.html">News &amp; events</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Club Library</h2>
+          <ul>
+            <li><a href="library.html">Browse the Library</a></li>
+            <li><a href="library.html#reports">Reports &amp; minutes</a></li>
+            <li><a href="library.html#honours">Honours boards</a></li>
+            <li><a href="library.html#policies">Policies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span data-year>2026</span> Parnell Cricket Club</p>
+        <p>Website by <a href="#" style="text-decoration:underline">Kouk Creatives</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/data.js?v=40"></script>
+  <script src="assets/js/main.js?v=40"></script>
+</body>
+</html>
