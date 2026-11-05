@@ -79,6 +79,69 @@ window.SITE = {
       image: IMG + "650e4c20299a53936d88c704/669db3ea0a1d7d1ef91be714_449716367_1202677097355251_4774103054548484936_n.jpg",
       alt: "Scorecard from Ruben Clinton's debut for MI New York",
       href: "https://www.parnellcricket.co.nz/blog-posts/ruben-clinton-on-debut-for-mi-new-york"
+    },
+    {
+      title: "Ella Drumm Bats for Worcestershire Rapids",
+      date: "2024-07-22",
+      tag: "Player spotlight",
+      summary: "Ella Drumm batting for the Worcestershire Rapids in a List A match.",
+      image: IMG + "650e4c20299a53936d88c704/669db4dc5499852bf54660c6_449974994_1200527340903560_1197500687275611312_n.jpg",
+      alt: "Ella Drumm batting for Worcestershire Rapids",
+      href: "https://www.parnellcricket.co.nz/blog-posts/ella-drumm-batting-for-worcestershire-rapids-list-a-on-sunday"
+    },
+    {
+      title: "First Century for Marina Lamplough",
+      date: "2024-07-22",
+      tag: "Women's cricket",
+      summary: "Congratulations to Marina Lamplough on her first century in the Women's 1XI.",
+      image: IMG + "650e4c20299a53936d88c704/669db43fd172591e58b04e32_449729192_1064735368986291_4695926750945241728_n.jpg",
+      alt: "",
+      href: "https://www.parnellcricket.co.nz/blog-posts/first-century-scored-by-marina-lamiplough"
+    },
+    {
+      title: "World Record Set by Lockie Ferguson",
+      date: "2024-07-22",
+      tag: "Player spotlight",
+      summary: "Former Parnell player Lockie Ferguson sets a new world record.",
+      image: IMG + "650e4c20299a53936d88c704/669db5f8fa335ea9c92279fe_448654957_523005116721809_5365029925244990354_n.jpg",
+      alt: "",
+      href: "https://www.parnellcricket.co.nz/blog-posts/world-record-set-by-lockie-ferguson"
+    },
+    {
+      title: "Shelley Fruin Helping Pasifika Cricket",
+      date: "2024-07-22",
+      tag: "Women's cricket",
+      summary: "Former White Fern Shelley Fruin is Assistant Coach for Samoa U19 Women at the ICC East Asia-Pacific qualifiers.",
+      image: IMG + "650e4c20299a53936d88c704/669db68c370ae216b5964bf1_447740631_122183136830018647_3942935063880333189_n.jpg",
+      alt: "",
+      href: "https://www.parnellcricket.co.nz/blog-posts/shelly-fruin-helping-pacifica-cricket"
+    },
+    {
+      title: "Polly Inglis Earns Her First White Ferns Contract",
+      date: "2024-07-22",
+      tag: "Player spotlight",
+      summary: "Congratulations to Polly Inglis on her first White Ferns contract.",
+      image: IMG + "650e4c20299a53936d88c704/669db574b1ed5701e8297651_8196931743752247253.jpg",
+      alt: "",
+      href: "https://www.parnellcricket.co.nz/blog-posts/polly-inglis-earning-her-first-white-ferns-contract"
+    },
+    {
+      title: "Update on Thomas Bloodworth Park Works",
+      date: "2024-07-22",
+      tag: "Club news",
+      summary: "The changes and works under way at Thomas Bloodworth Park.",
+      image: IMG + "650e4c20299a53936d88c704/669db857b1685bf83529817a_441884326_10160129220972709_2149226989581046019_n.jpg",
+      alt: "",
+      href: "https://www.parnellcricket.co.nz/blog-posts/update-on-thomas-bloodworth-park-work"
+    },
+    {
+      title: "Ella Drumm's County Debut for North East Warriors",
+      date: "2024-07-22",
+      tag: "Player spotlight",
+      summary: "Club member Ella Drumm makes her county debut in England.",
+      image: IMG + "650e4c20299a53936d88c704/669db91a677048d324927fd5_438949339_1153553542267607_2404763292750118135_n.jpg",
+      alt: "",
+      href: "https://www.parnellcricket.co.nz/blog-posts/ella-drumm-made-her-county-debut-for-north-east-warriors"
     }
   ],
 
