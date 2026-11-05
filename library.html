@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=49">
+  <link rel="stylesheet" href="assets/css/styles.css?v=50">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -48,10 +48,11 @@
       </section>
 
       <section class="block block--light" aria-label="Library contents">
-        <div class="container">
+        <div class="container lib-layout">
+          <div class="lib-main">
           <form class="lib-search" role="search" onsubmit="return false"><label class="sr-only" for="lib-q">Search the Library</label><input id="lib-q" type="search" placeholder="Search reports, policies, news…" data-lib-search><button class="btn btn--primary" type="submit">Search</button></form>
           <p class="lib-empty" data-lib-empty hidden>Nothing matches – try another word.</p>
-          <div style="margin-top:40px" data-lib>
+          <div class="lib-groups" data-lib>
             <div class="lib-group" id="reports"><h2>Reports &amp; Minutes</h2><ul class="lib-list">
               <li><a href="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/688bf5480771d1c97e2f3ada_Yellow%20Book%20-%20Final%20Draft%202025%201UP%20YELLOW.pdf"><span class="t">2024/25 Annual Report (Yellow Book)</span><span class="m">PDF</span></a></li>
               <li><a href="https://cdn.prod.website-files.com/650e4c20299a53936d88c704/66ad666ccab5ba12c40f065e_FY24%2Baccounts%2B-%2BFinancial%2BAccounts.pdf"><span class="t">2023/24 Financial accounts</span><span class="m">PDF</span></a></li>
@@ -88,6 +89,27 @@
               <li><a href="https://www.parnellcricket.co.nz/news/vacancies"><span class="t">Vacancies</span><span class="m">Notice</span></a></li>
             </ul></div>
           </div>
+          </div>
+          <aside class="lib-aside" aria-label="Library help">
+            <nav class="lib-jump" aria-label="Library sections">
+              <p class="lib-aside__label">Jump to</p>
+              <ul>
+                <li><a href="#reports">Reports &amp; Minutes</a></li>
+                <li><a href="#honours">Honours Boards</a></li>
+                <li><a href="#policies">Policies &amp; Documents</a></li>
+                <li><a href="#news">News Archive</a></li>
+                <li><a href="#events">Past Events</a></li>
+                <li><a href="#notices">Projects &amp; Notices</a></li>
+              </ul>
+            </nav>
+            <div class="lib-help">
+              <span class="lib-help__icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><circle cx="11.5" cy="14" r="2.5"/><path d="m13.5 16 2 2"/></svg></span>
+              <h2>Can't Find What You're Looking For?</h2>
+              <p>Not everything has made it online yet. Reach out to the team and we'll dig it out of the archive for you.</p>
+              <a class="btn btn--light" href="mailto:steve@parnellcricket.co.nz?subject=Club%20Library%20request">Email the team</a>
+              <p class="lib-help__who">Steve Hurdley · Administration Manager</p>
+            </div>
+          </aside>
         </div>
       </section>
     </main>
@@ -154,7 +176,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/data.js?v=49"></script>
-  <script src="assets/js/main.js?v=49"></script>
+  <script src="assets/js/data.js?v=50"></script>
+  <script src="assets/js/main.js?v=50"></script>
 </body>
 </html>
