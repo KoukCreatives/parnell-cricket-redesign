@@ -128,7 +128,7 @@
 
   /* ---------- Slide in from bottom (Goal's slideInBottom on ~150 elements) ---------- */
   const revealSel = [
-    ".section-head > *", ".center-head > *", ".statement", ".arc", ".stats .stat", ".quick__head > *", ".quick-grid > *",
+    ".section-head > *", ".center-head > *", ".statement", ".arc", ".stats .stat", ".quick-grid > *",
     ".players__copy > *", ".match", ".ev-card", ".community", ".pass", ".fineprint",
     ".partners h2", ".logo-pills li", ".partners__note", ".slide", ".news", ".center .btn",
     ".gallery li", ".faq-card", ".faq details", ".brand__photos img", ".footer__news > *", ".footer__top > div",
