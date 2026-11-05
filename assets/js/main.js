@@ -111,34 +111,99 @@
     });
   }
 
-  /* ---------- Count-up stats ---------- */
-  document.querySelectorAll("[data-since]").forEach(el => { el.dataset.count = new Date().getFullYear() - +el.dataset.since; el.textContent = el.dataset.count; });
-  const counters = document.querySelectorAll("[data-count]");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (counters.length && !reduce && "IntersectionObserver" in window) {
-    const io = new IntersectionObserver(entries => entries.forEach(en => {
-      if (!en.isIntersecting) return;
-      const el = en.target, end = +el.dataset.count, t0 = performance.now();
-      const step = t => {
-        const p = Math.min((t - t0) / 1200, 1);
-        el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-      io.unobserve(el);
-    }), { threshold: 0.6 });
-    counters.forEach(c => io.observe(c));
-  }
+  const hasIO = "IntersectionObserver" in window;
+  document.documentElement.classList.toggle("motion", !reduce);
 
-  /* ---------- Reveal on scroll ---------- */
-  if (!reduce && "IntersectionObserver" in window) {
+  /* ---------- Odometer counters (digits roll into place, like Goal) ---------- */
+  document.querySelectorAll("[data-since]").forEach(el => { el.dataset.count = new Date().getFullYear() - +el.dataset.since; });
+  document.querySelectorAll("[data-count]").forEach(el => {
+    const val = String(el.dataset.count);
+    if (reduce) { el.textContent = val; return; }
+    el.classList.add("odo");
+    el.innerHTML = `<span class="sr-only">${val}</span>` + [...val].map((d, i) =>
+      `<span class="odo__col" aria-hidden="true"><span class="odo__strip" style="--n:${+d + 10};--d:${i * 120}ms">${"0123456789".repeat(2).split("").map(n => `<span>${n}</span>`).join("")}</span></span>`
+    ).join("");
+  });
+
+  /* ---------- Slide in from bottom (Goal's slideInBottom on ~150 elements) ---------- */
+  const revealSel = [
+    ".section-head > *", ".center-head > *", ".statement", ".arc", ".stats .stat", ".actions > *",
+    ".players__copy > *", ".match", ".ev-card", ".community", ".pass", ".fineprint",
+    ".partners h2", ".logo-pills li", ".partners__note", ".slide", ".news", ".center .btn",
+    ".gallery li", ".faq-card", ".faq details", ".brand__photos img", ".footer__news > *", ".footer__top > div",
+    ".facts .fact", ".ages .age", ".steps li", ".checklist li", ".split > div > .h2", ".split > .h2"
+  ].join(",");
+  document.querySelectorAll(revealSel).forEach(el => {
+    if (el.closest(".hero")) return;
+    el.classList.add("reveal");
+    const sibs = [...el.parentElement.children].filter(c => c.matches(revealSel));
+    el.style.setProperty("--d", Math.min(sibs.indexOf(el), 6) * 90 + "ms");
+  });
+  if (!reduce && hasIO) {
     const ro = new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add("is-in"); ro.unobserve(e.target); }
-    }), { threshold: 0.12 });
-    document.querySelectorAll(".reveal").forEach(el => ro.observe(el));
+    }), { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal, .odo").forEach(el => ro.observe(el));
   } else {
-    document.querySelectorAll(".reveal").forEach(el => el.classList.add("is-in"));
+    document.querySelectorAll(".reveal, .odo").forEach(el => el.classList.add("is-in"));
   }
+
+  /* ---------- Scroll-linked parallax (arc photos, player cards, partner photos) ---------- */
+  const px = [...document.querySelectorAll("[data-parallax]")];
+  if (px.length && !reduce) {
+    let ticking = false;
+    const update = () => {
+      const vh = innerHeight;
+      px.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        const off = (r.top + r.height / 2 - vh / 2);
+        el.style.setProperty("--py", (off * +el.dataset.parallax).toFixed(1) + "px");
+        if (el.dataset.rotate) el.style.setProperty("--pr", (+el.dataset.rotate + off * 0.012).toFixed(2) + "deg");
+      });
+      ticking = false;
+    };
+    addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    addEventListener("resize", update);
+    update();
+  }
+
+  /* ---------- FAQ: smooth open/close ---------- */
+  document.querySelectorAll(".faq details").forEach(d => {
+    const sum = d.querySelector("summary");
+    const body = d.querySelector("summary + *");
+    if (!body || reduce) return;
+    sum.addEventListener("click", e => {
+      e.preventDefault();
+      if (d.open) {
+        const anim = body.animate([{ height: body.offsetHeight + "px", opacity: 1 }, { height: "0px", opacity: 0 }], { duration: 300, easing: "ease" });
+        d.classList.remove("is-open");
+        anim.onfinish = () => { d.open = false; };
+      } else {
+        d.open = true; d.classList.add("is-open");
+        body.animate([{ height: "0px", opacity: 0 }, { height: body.offsetHeight + "px", opacity: 1 }], { duration: 380, easing: "cubic-bezier(.25,.46,.45,.94)" });
+      }
+    });
+  });
+
+  /* ---------- Gallery: custom "Drag" cursor + drag to scroll ---------- */
+  document.querySelectorAll(".gallery-wrap").forEach(w => {
+    const g = w.querySelector(".gallery"), cur = w.querySelector(".drag-cursor");
+    if (matchMedia("(pointer: fine)").matches && !reduce) {
+      w.addEventListener("pointermove", e => {
+        const r = w.getBoundingClientRect();
+        cur.style.transform = `translate(${e.clientX - r.left}px, ${e.clientY - r.top}px)`;
+      });
+      w.addEventListener("pointerenter", () => w.classList.add("cursor-on"));
+      w.addEventListener("pointerleave", () => w.classList.remove("cursor-on"));
+    }
+    let down = false, x0 = 0, s0 = 0;
+    g.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse") return; down = true; x0 = e.clientX; s0 = g.scrollLeft; g.classList.add("is-drag"); });
+    addEventListener("pointerup", () => { down = false; g.classList.remove("is-drag"); });
+    g.addEventListener("pointermove", e => { if (down) g.scrollLeft = s0 - (e.clientX - x0); });
+    g.addEventListener("dragstart", e => e.preventDefault());
+  });
 
   /* ---------- Tabs (events, membership) ---------- */
   document.querySelectorAll("[data-tabs]").forEach(group => {
@@ -165,12 +230,18 @@
     let i = 0;
     const show = n => {
       i = (n + slides.length) % slides.length;
-      slides.forEach((s, k) => { s.hidden = k !== i; });
+      slides.forEach((s, k) => { s.hidden = k !== i; s.classList.toggle("is-active", k === i); });
       if (count) count.innerHTML = `<strong>${i + 1}</strong> / ${slides.length}`;
     };
     sl.querySelector("[data-prev]")?.addEventListener("click", () => show(i - 1));
     sl.querySelector("[data-next]")?.addEventListener("click", () => show(i + 1));
     show(0);
+    if (!reduce) {
+      let t = setInterval(() => show(i + 1), 6000);
+      sl.addEventListener("pointerenter", () => clearInterval(t));
+      sl.addEventListener("focusin", () => clearInterval(t));
+      sl.addEventListener("pointerleave", () => { clearInterval(t); t = setInterval(() => show(i + 1), 6000); });
+    }
   });
 
   /* ---------- Newsletter (prototype: opens an email to the club) ---------- */
