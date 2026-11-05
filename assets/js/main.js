@@ -102,7 +102,7 @@
         <span class="sponsor__go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         <span class="sr-only"> (opens in a new tab)</span>
       </a></li>`).join("") + `
-      <li><a class="sponsor sponsor--you" href="https://www.parnellcricket.co.nz/sponsors">
+      <li><a class="sponsor sponsor--you" href="sponsors.html#become">
         <span class="sponsor__logo"><span class="you__plus" aria-hidden="true">+</span></span>
         <span class="sponsor__meta"><strong>Your brand here</strong><span>Become a partner</span></span>
         <span class="sponsor__go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
